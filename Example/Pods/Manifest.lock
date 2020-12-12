@@ -1,0 +1,16 @@
+PODS:
+  - JSConstraints (0.1.0)
+
+DEPENDENCIES:
+  - JSConstraints (from `../`)
+
+EXTERNAL SOURCES:
+  JSConstraints:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  JSConstraints: a9d0eb7949d7f191816dc917df05f4a3565f7f2a
+
+PODFILE CHECKSUM: e530c6f86a82b0d5bc077314200dcdd455780117
+
+COCOAPODS: 1.9.1

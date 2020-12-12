@@ -1,0 +1,22 @@
+{
+  "name": "JSConstraints",
+  "version": "0.1.0",
+  "summary": "A short description of JSConstraints.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/jaysack/JSConstraints",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "jaysack": "jonathan.sack91@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/jaysack/JSConstraints.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source_files": "JSConstraints/Classes/**/*"
+}
