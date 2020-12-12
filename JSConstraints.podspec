@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'JSConstraints'
-  s.version          = '0.1.1'
+  s.version          = '0.1.2'
   s.summary          = 'Layout Framework for Swift UIKit'
 
 # This description is used to generate tags and improve search results.
@@ -23,13 +23,12 @@ Pod::Spec.new do |s|
 
   s.homepage         = 'https://github.com/jaysack/JSConstraints'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'JS' => 'jonathan.sack91@gmail.com' }
+  s.author           = { 'Jonathan Sack' => 'jonathan.sack91@gmail.com' }
   s.source           = { :git => 'https://github.com/jaysack/JSConstraints.git', :tag => s.version.to_s }
   s.frameworks = 'UIKit'
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '11.0'
   s.source_files = 'JSConstraints/Classes/**/*'
   s.swift_version = '5.0'
-  s.ios.deployment_target  = '11.0'
   
   # s.resource_bundles = {
   #   'JSConstraints' => ['JSConstraints/Assets/*.png']
