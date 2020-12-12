@@ -23,7 +23,7 @@ pod 'JSConstraints'
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ### Add Constraints
-<img src="JSConstraints/Images/pink_square_image.png" alt="pink square in Xcode simulator" width="300">
+<img src="JSConstraints/Demo/pink_square_image.png" alt="pink square in Xcode simulator" width="300">
 
 ```swift
 // Add pink square to superview
@@ -71,22 +71,21 @@ You can also write with JSConstraint enums directly with '.anchor() + .constant(
 <br>
 
 ### Centering a View
-<img src="JSConstraints/Images/yellow_circle_image.png" alt="yellow circle in Xcode simulator" width="300">
+<img src="JSConstraints/Demo/yellow_circle_image.png" alt="yellow circle in Xcode simulator" width="300">
 
 ```swift
 yellowCircle.centerIn(superview: self.view)
 ```
 We’re centering  `yellowCircle` in our view controller’s view
-> This method’s automatically insert `yellowCircle` in `superview`  
 <br>
 
 ### Pin to Superview
-<img src="JSConstraints/Images/indigo_view_image.png" alt="yellow circle in Xcode simulator" width="300">
+<img src="JSConstraints/Demo/indigo_view_image.png" alt="yellow circle in Xcode simulator" width="300">
+
 ```swift
 let padding: CGFloat = 18
 indigoView.pinTo(superview: self.view, adding: padding)
-``` 
-> This method’s automatically insert `indigoView` in `superview`.   
+```  
 <br>
 
 ```swift
@@ -128,7 +127,7 @@ Here’s we’re setting up `isActive` property to `false` and simply adding new
 <br>
 
 ### Result
-<img src="JSConstraints/Images/dynamic_constraints.gif" alt="dynamic constraints in Xcode simulator" width="300">
+<img src="JSConstraints/Demo/dynamic_constraints.gif" alt="dynamic constraints in Xcode simulator" width="300">
 <br>
 
 ## Author
