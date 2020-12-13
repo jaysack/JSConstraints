@@ -9,13 +9,13 @@ import UIKit
 
 // MARK: - Custom Constraint Operators
 // Custom Operator => i.e: .top(view.topAnchor) + .constant(18)
-public func + (lhs: UIView.JSConstraint, rhs: UIView.JSConstraint) -> UIView.JSConstraint {
-    return UIView.JSConstraint.constructor(lhs, rhs.constantRawValue)
+public func + (lhs: JSConstraint, rhs: JSConstraint) -> JSConstraint {
+    return JSConstraint.constructor(lhs, rhs.constantRawValue)
 }
 
 // Custom Operator => i.e: .top(view.topAnchor) - .constant(18)
-public func - (lhs: UIView.JSConstraint, rhs: UIView.JSConstraint) -> UIView.JSConstraint {
-    return UIView.JSConstraint.constructor(lhs, -rhs.constantRawValue)
+public func - (lhs: JSConstraint, rhs: JSConstraint) -> JSConstraint {
+    return JSConstraint.constructor(lhs, -rhs.constantRawValue)
 }
 
 public extension UIView {
@@ -161,25 +161,25 @@ public extension UIView {
         constraint.isActive = true
         return constraint
     }
+}
 
-    // MARK: 🔀 Constraint
-    enum JSConstraint {
-        case top(NSLayoutAnchor<NSLayoutYAxisAnchor>)
-        case leading(NSLayoutAnchor<NSLayoutXAxisAnchor>)
-        case bottom(NSLayoutAnchor<NSLayoutYAxisAnchor>)
-        case trailing(NSLayoutAnchor<NSLayoutXAxisAnchor>)
-        case xCenter(NSLayoutAnchor<NSLayoutXAxisAnchor>)
-        case yCenter(NSLayoutAnchor<NSLayoutYAxisAnchor>)
-        case constant(CGFloat)
-        indirect case constructor(JSConstraint, CGFloat)
+// MARK: 🔀 Constraint
+public enum JSConstraint {
+    case top(NSLayoutAnchor<NSLayoutYAxisAnchor>)
+    case leading(NSLayoutAnchor<NSLayoutXAxisAnchor>)
+    case bottom(NSLayoutAnchor<NSLayoutYAxisAnchor>)
+    case trailing(NSLayoutAnchor<NSLayoutXAxisAnchor>)
+    case xCenter(NSLayoutAnchor<NSLayoutXAxisAnchor>)
+    case yCenter(NSLayoutAnchor<NSLayoutYAxisAnchor>)
+    case constant(CGFloat)
+    indirect case constructor(JSConstraint, CGFloat)
 
-        var constantRawValue: CGFloat {
-            switch self {
-            case .constant(let value):
-                return value
-            default:
-                return 0
-            }
+    var constantRawValue: CGFloat {
+        switch self {
+        case .constant(let value):
+            return value
+        default:
+            return 0
         }
     }
 }
