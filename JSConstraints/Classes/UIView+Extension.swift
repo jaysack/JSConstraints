@@ -21,6 +21,16 @@ public func - (lhs: JSConstraint, rhs: JSConstraint) -> JSConstraint {
 public extension UIView {
     
     // MARK: - Pin to Superview
+/**
+     Pin child view to superview's edges minus padding value provided as argument.
+     The method returns all activated constraints
+     
+     - parameter superview: self's parent
+     - parameter xPadding: horizontal padding
+     - parameter yPadding: veritical padding
+     
+     - returns: An array of activated constraints
+*/
     @discardableResult
     func pinTo(superview: UIView, xPadding: CGFloat = 0, yPadding: CGFloat = 0) -> [NSLayoutConstraint] {
         superview.addSubview(self)
@@ -33,6 +43,16 @@ public extension UIView {
     }
 
     // MARK: - Pin to Superview safe area layout guide
+    /**
+         Pin child view to superview's layout guide's edges minus padding value provided as argument.
+         The method returns all activated constraints
+         
+         - parameter layoutGuide: self's parent's layout guide
+         - parameter xPadding: horizontal padding
+         - parameter yPadding: veritical padding
+         
+         - returns: An array of activated constraints
+    */
     @discardableResult
     func pinTo(layoutGuide: UILayoutGuide, xPadding: CGFloat = 0, yPadding: CGFloat = 0) -> [NSLayoutConstraint] {
 
@@ -49,6 +69,16 @@ public extension UIView {
     }
 
     // MARK: - Center in Superview
+    /**
+         Center child view in superview's
+         The method returns all activated constraints
+         
+         - parameter superview: self's parent's
+         - parameter xOffset: horizontal offset
+         - parameter yOffset: veritical offset
+         
+         - returns: An array of related activated constraints (horizontal and vertical center constraints)
+    */
     @discardableResult
     func centerIn(superview: UIView, xOffset: CGFloat = 0, yOffset: CGFloat = 0) -> [NSLayoutConstraint] {
         superview.addSubview(self)
@@ -59,6 +89,15 @@ public extension UIView {
     }
     
     // MARK: - Set size
+    /**
+         Set width and/or height constraints of a view
+         The method returns all activated constraints
+         
+         - parameter width: view's width
+         - parameter height: view's height
+         
+         - returns: An array of related activated constraints (width and/or height constraints)
+    */
     @discardableResult
     func setSize(width: CGFloat? = nil, height: CGFloat? = nil) -> [NSLayoutConstraint] {
         
@@ -81,6 +120,14 @@ public extension UIView {
     }
 
     // MARK: - Set Constraints
+    /**
+         Set programmatic constraints
+         The method returns all activated constraints
+         
+         - parameter constraints: array of constraints
+         
+         - returns: An array of activated constraints
+    */
     @discardableResult
     func setConstraints(_ constraints: [JSConstraint]) -> [NSLayoutConstraint] {
         
