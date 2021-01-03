@@ -18,6 +18,11 @@ public func - (lhs: JSConstraint, rhs: JSConstraint) -> JSConstraint {
     return JSConstraint.constructor(lhs, -rhs.constantRawValue)
 }
 
+// Custom Operator => i.e: .top(view.widthAnchor) * .multiplier(0.5)
+public func * (lhs: JSConstraint, rhs: JSConstraint) -> JSConstraint {
+    return JSConstraint.multiplierConstructor(lhs, rhs.constantRawValue)
+}
+
 public extension UIView {
     
     // MARK: - Pin to Superview
@@ -87,37 +92,6 @@ public extension UIView {
             .yCenter(superview.centerYAnchor) + .constant(yOffset)
         ])
     }
-    
-    // MARK: - Set size
-    /**
-         Set width and/or height constraints of a view
-         The method returns all activated constraints
-         
-         - parameter width: view's width
-         - parameter height: view's height
-         
-         - returns: An array of related activated constraints (width and/or height constraints)
-    */
-    @discardableResult
-    func setSize(width: CGFloat? = nil, height: CGFloat? = nil) -> [NSLayoutConstraint] {
-        
-        // Enable Auto Layout
-        self.translatesAutoresizingMaskIntoConstraints = false
-
-        // Actived constraints
-        var activedConstraints = [NSLayoutConstraint]()
-        
-        if let width = width {
-            let constraint = self.widthAnchor.constraint(equalToConstant: width)
-            activedConstraints.append(activated(constraint))
-        }
-        if let height = height {
-            let constraint = self.heightAnchor.constraint(equalToConstant: height)
-            activedConstraints.append(activated(constraint))
-        }
-
-        return activedConstraints
-    }
 
     // MARK: - Set Constraints
     /**
@@ -164,8 +138,55 @@ public extension UIView {
                 let constraint = self.centerYAnchor.constraint(equalTo: centerYAnchor)
                 activedConstraints.append(activated(constraint))
 
-            case .constant(_):
+            case .width(let constant):
+                let constraint = self.widthAnchor.constraint(equalToConstant: constant)
+                activedConstraints.append(activated(constraint))
+
+            case .height(let constant):
+                let constraint = self.heightAnchor.constraint(equalToConstant: constant)
+                activedConstraints.append(activated(constraint))
+
+            case .sides(let constant):
+                let widthConstraint = self.widthAnchor.constraint(equalToConstant: constant)
+                let heightConstraint = self.heightAnchor.constraint(equalToConstant: constant)
+                [widthConstraint, heightConstraint].forEach { activedConstraints.append(activated($0)) }
+
+            case .anchoredWidth(let anchor):
+                let constraint = self.widthAnchor.constraint(equalTo: anchor)
+                activedConstraints.append(activated(constraint))
+
+            case .anchoredHeight(let anchor):
+                let constraint = self.heightAnchor.constraint(equalTo: anchor)
+                activedConstraints.append(activated(constraint))
+
+            case .anchoredSides(let anchor):
+                let widthConstraint = self.widthAnchor.constraint(equalTo: anchor)
+                let heightConstraint = self.heightAnchor.constraint(equalTo: anchor)
+                [widthConstraint, heightConstraint].forEach { activedConstraints.append(activated($0)) }
+
+            // Constant & Multiplier
+            case .constant, .multiplier:
                 break
+
+            // Constraints and multiplier values
+            case .multiplierConstructor(let anchor, let multiplier):
+                switch anchor {
+                case .anchoredWidth(let widthAnchor):
+                    let constraint = self.widthAnchor.constraint(equalTo: widthAnchor, multiplier: multiplier)
+                    activedConstraints.append(activated(constraint))
+
+                case .anchoredHeight(let heightAnchor):
+                    let constraint = self.heightAnchor.constraint(equalTo: heightAnchor, multiplier: multiplier)
+                    activedConstraints.append(activated(constraint))
+                    
+                case .anchoredSides(let anchor):
+                    let widthConstraint = self.widthAnchor.constraint(equalTo: anchor, multiplier: multiplier)
+                    let heightConstraint = self.heightAnchor.constraint(equalTo: anchor, multiplier: multiplier)
+                    [widthConstraint, heightConstraint].forEach { activedConstraints.append(activated($0)) }
+                    
+                default:
+                    break
+                }
 
             // Constraints and constant values
             case .constructor(let anchor, let constant):
@@ -212,18 +233,33 @@ public extension UIView {
 
 // MARK: 🔀 Constraint
 public enum JSConstraint {
+    // Directional constraints
     case top(NSLayoutAnchor<NSLayoutYAxisAnchor>)
     case leading(NSLayoutAnchor<NSLayoutXAxisAnchor>)
     case bottom(NSLayoutAnchor<NSLayoutYAxisAnchor>)
     case trailing(NSLayoutAnchor<NSLayoutXAxisAnchor>)
     case xCenter(NSLayoutAnchor<NSLayoutXAxisAnchor>)
     case yCenter(NSLayoutAnchor<NSLayoutYAxisAnchor>)
+
+    // Absolute constraints
+    case width(CGFloat)
+    case height(CGFloat)
+    case sides(CGFloat)
+
+    // Relative constraints
+    case anchoredWidth(NSLayoutDimension)
+    case anchoredHeight(NSLayoutDimension)
+    case anchoredSides(NSLayoutDimension)
+
+    // Utilities
     case constant(CGFloat)
+    case multiplier(CGFloat)
     indirect case constructor(JSConstraint, CGFloat)
+    indirect case multiplierConstructor(JSConstraint, CGFloat)
 
     var constantRawValue: CGFloat {
         switch self {
-        case .constant(let value):
+        case .constant(let value), .multiplier(let value), .width(let value), .height(let value), .sides(let value):
             return value
         default:
             return 0

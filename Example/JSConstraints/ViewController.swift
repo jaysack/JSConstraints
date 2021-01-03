@@ -17,16 +17,14 @@ class ViewController: UIViewController {
 
     // MARK: - Pink Square
     lazy var pinkSquare: UIView = {
-        let size: CGFloat = 115
         let view = View.get(color: .systemPink)
-        view.setSize(width: size, height: size)
         return view
     }()
 
     // MARK: - Cyan Rectangle
     lazy var cyanRectangle: UIView = {
         let view = View.get(color: .cyan)
-        view.setSize(width: 160, height: 380)
+        view.setConstraints([ .width(160), .height(380) ])
         return view
     }()
 
@@ -49,15 +47,16 @@ class ViewController: UIViewController {
 
     private func setSubviewsConstraints() {
         // Pink square constraints
-        dynamicConstraints = pinkSquare.setConstraints([
-            .xCenter(view.centerXAnchor) + .constant(75),
-            .bottom(view.safeAreaLayoutGuide.bottomAnchor) + .constant(8)
-        ])
-        
-        // Pink square constraints
         cyanRectangle.setConstraints([
             .top(view.safeAreaLayoutGuide.topAnchor),
             .leading(view.leadingAnchor) + .constant(12)
+        ])
+        
+        // Pink square constraints
+        dynamicConstraints = pinkSquare.setConstraints([
+            .sides(115),
+            .xCenter(view.centerXAnchor) + .constant(75),
+            .bottom(view.safeAreaLayoutGuide.bottomAnchor) + .constant(8)
         ])
     }
 
@@ -68,7 +67,9 @@ class ViewController: UIViewController {
         // 2. Add new constraints
         pinkSquare.setConstraints([
             .bottom(cyanRectangle.bottomAnchor) - .constant(30),
-            .leading(cyanRectangle.trailingAnchor) - .constant(30)
+            .leading(cyanRectangle.trailingAnchor) - .constant(30),
+            .anchoredHeight(cyanRectangle.widthAnchor),
+            .anchoredWidth(view.widthAnchor) * .multiplier(0.3)
         ])
         
         // 3. Animate everything
