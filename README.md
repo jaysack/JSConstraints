@@ -37,13 +37,13 @@ pinkSquare.setConstraints([
 <br>
 
 #### What Just Happened?
-1. We constrained `pinkSquare` 18 point from our view’s **Safe Area Layout Guide’s bottom**
+1. We constrained `pinkSquare` **18 points** from our view’s safe area layout guide’s bottom
 ```swift
 let bottomConstraint = .bottom(view.safeAreaLayoutGuide.bottomAnchor) + .constant(18)
 ```
 <br>
 
-2. We also constrained `pinkSquare` **15 points from view’s leading anchor**
+2. We also constrained `pinkSquare` **15 points** from our view’s leading anchor
 ```swift
 let leadingConstraint = .leading(view.leadingAnchor) + .constant(15)
 ```
