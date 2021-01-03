@@ -1,14 +1,17 @@
 # JSConstraints
 
-[![CI Status](https://img.shields.io/travis/jaysack/JSConstraints.svg?style=flat)](https://travis-ci.org/jaysack/JSConstraints)
 [![Version](https://img.shields.io/cocoapods/v/JSConstraints.svg?style=flat)](https://cocoapods.org/pods/JSConstraints)
 [![License](https://img.shields.io/cocoapods/l/JSConstraints.svg?style=flat)](https://cocoapods.org/pods/JSConstraints)
 [![Platform](https://img.shields.io/cocoapods/p/JSConstraints.svg?style=flat)](https://cocoapods.org/pods/JSConstraints)
 
-*Swift Fast Constraint-Typing*
+> A tiny Swift library written with only one thing in mind: *Blazin Fast Programmatic Constraints-Typing*
+- - - -
+<br>
 
 ## What’s JSConstraints?
 **JSConstraints** is a really tiny library extending view’s layout functionalities
+- - - -
+<br>
 
 ## Installation
 JSConstraints is available through [CocoaPods](https://cocoapods.org). To install
@@ -17,45 +20,40 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'JSConstraints'
 ```
+- - - -
+<br>
 
 ## How It Works?
-### Install pod
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ### Add Constraints
-<img src="JSConstraints/Demo/pink_square_image.png" alt="pink square in Xcode simulator" width="300">
-
 ```swift
-// Add pink square to superview
+// First, add pink square to its superview
 view.addSubview(pinkSquare)
 
-// Set constraints
+// Then, set constraints
 pinkSquare.setConstraints([
-    .bottom(view.safeAreaLayoutGuide.bottomAnchor) + .constant(18),
-    .leading(view.leadingAnchor) + .constant(35)
+.bottom(view.safeAreaLayoutGuide.bottomAnchor) + .constant(18),
+.leading(view.leadingAnchor) + .constant(35)
 ])
 ```
+<img src="JSConstraints/Demo/pink_square_image.png" alt="pink square in Xcode simulator" width="300">
 <br>
 
-1. We’re adding `pinkSquare` to our view controller’s view
+#### What Just Happened?
+1. We constrained `pinkSquare` 18 point from our view’s **Safe Area Layout Guide’s bottom**
 ```swift
-view.addSubview(pinkSquare)
+let bottomConstraint = .bottom(view.safeAreaLayoutGuide.bottomAnchor) + .constant(18)
 ```
 <br>
 
-2. We now constraint `pinkSquare` 18 point from our view’s **Safe Area Layout Guide’s bottom** with the following JSConstraint `enum`
-```swift
-let bottomConstraint = .bottom(view.safeAreaLayoutGuide.bottomAnchor)
-```
-<br>
-
-3. We then, constraint `pinkSquare` again **15 points from view’s leading anchor**
+2. We also constrained `pinkSquare` **15 points from view’s leading anchor**
 ```swift
 let leadingConstraint = .leading(view.leadingAnchor) + .constant(15)
 ```
 <br>
 
-4. Let’s put it all together, and we get
+#### Refactored Form
+Let’s put it all back together, and we get:
 ```swift
 // Add pink square to superview
 view.addSubview(pinkSquare)
@@ -70,24 +68,28 @@ You can also write with JSConstraint enums directly with '.anchor() + .constant(
 - - - -
 <br>
 
-### Centering a View
-<img src="JSConstraints/Demo/yellow_circle_image.png" alt="yellow circle in Xcode simulator" width="300">
-
+### CENTERING A VIEW
 ```swift
 yellowCircle.centerIn(superview: self.view)
 ```
-We’re centering  `yellowCircle` in our view controller’s view
+<img src="JSConstraints/Demo/yellow_circle_image.png" alt="yellow circle in Xcode simulator" width="300">
 <br>
 
-### Pin to Superview
-<img src="JSConstraints/Demo/indigo_view_image.png" alt="yellow circle in Xcode simulator" width="300">
+#### What Just Happened?
+We constrained `yellowCircle` in the **center** of the main view
+- - - -
+<br>
 
+
+### Pin to Superview
 ```swift
 let padding: CGFloat = 18
 indigoView.pinTo(superview: self.view, adding: padding)
 ```  
+<img src="JSConstraints/Demo/indigo_view_image.png" alt="yellow circle in Xcode simulator" width="300">
 <br>
 
+#### Note
 ```swift
 /*
 If you pass an instance of `UILayoutGuide`, Our `indigoView` will also be inserted automatically to `superview`
@@ -95,24 +97,19 @@ If you pass an instance of `UILayoutGuide`, Our `indigoView` will also be insert
 
 otherView(layoutGuide: view.safeAreaLayoutGuide)
 ```
+- - - -
 <br>
 
-## How About Animating Constraints?
-**JSConstraints** methods always return the collection of successfully activated constraints.
-We can use object references to toggle constraints between `active` and `inactive` state as follows
 
-### 1. Create References to Constraints
+## HOW ABOUT DYNAMIC CONSTRAINTS?
+**JSConstraints** methods always return the collection of successfully activated constraints. We can it to toggle constraints between `active` and `inactive` state as follows.
+
+### 1. Get Constraints References
 ```swift
-// Hold constraints refs
-var dynamicConstraints = [NSLayoutConstraint]()
-
-// Save results
-let yellowCircleDynamicConstraints = yellowCircle.setConstraints([ .bottom(blueRectangle.topAnchor) ])
-
-// Append to refs holder
-dynamicConstraints += yellowCircleDynamicConstraints
+// Get constraints refs returned
+var dynamicConstraints: [NSLayoutConstraint] = yellowCircle.setConstraints([ .bottom(blueRectangle.topAnchor) ])
 ```
-Here, we’re a list of activatedConstraints of type `[NSLayoutConstraint]` is return to us. We append the result to our array `dynamicConstraints`
+Here, list of activated constraints of type `[NSLayoutConstraint]` is return to us. We can save the result in variable `dynamicConstraints`.
 <br>
 
 ### 2. Update Constraints
@@ -120,10 +117,11 @@ Here, we’re a list of activatedConstraints of type `[NSLayoutConstraint]` is r
 // Deactivate dynamic constraints
 dynamicConstraints.forEach { $0.isActive = false }
 
-// Add new constraints
+// Set new constraints
 yellowCircle.centerIn(superview: self.view)
 ```
-Here’s we’re setting up `isActive` property to `false` and simply adding new constraints
+Here’s we’re setting up `isActive` property of active constraints to `false`. Then, we add new constraints
+- - - -
 <br>
 
 ### Result
@@ -132,7 +130,7 @@ Here’s we’re setting up `isActive` property to `false` and simply adding new
 
 ## Author
 Jonathan Sack
-📨 jonathan.sack91@gmail.com
+📨  jonathan.sack91@gmail.com
 <br>
 
 ## License
