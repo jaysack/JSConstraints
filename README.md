@@ -5,11 +5,12 @@
 [![Platform](https://img.shields.io/cocoapods/p/JSConstraints.svg?style=flat)](https://cocoapods.org/pods/JSConstraints)
 
 > A tiny Swift library written with only one thing in mind: *Blazin Fast Programmatic Constraints-Typing*
+
+**JSConstraints** is a really small library extending `UIView` and `UIStackView` functionalities
 - - - -
 <br>
 
 ## What’s JSConstraints?
-**JSConstraints** is a really tiny library extending view’s layout functionalities
 - - - -
 <br>
 
@@ -25,7 +26,7 @@ pod 'JSConstraints'
 
 ## How It Works?
 
-### Add Constraints
+### ADDING CONSTRAINTS
 ```swift
 // First, add pink square to its superview
 view.addSubview(pinkSquare)
@@ -81,7 +82,7 @@ We constrained `yellowCircle` in the **center** of the main view
 <br>
 
 
-### Pin to Superview
+### PIN TO SUPERVIEW
 ```swift
 let padding: CGFloat = 18
 indigoView.pinTo(superview: self.view, adding: padding)
@@ -101,18 +102,19 @@ otherView(layoutGuide: view.safeAreaLayoutGuide)
 <br>
 
 
-## HOW ABOUT DYNAMIC CONSTRAINTS?
+## How About Dynamic Constraints?
 **JSConstraints** methods always return the collection of successfully activated constraints. We can it to toggle constraints between `active` and `inactive` state as follows.
 
-### 1. Get Constraints References
+### 1. GET CONSTRAINTS REFERENCES
 ```swift
 // Get constraints refs returned
 var dynamicConstraints: [NSLayoutConstraint] = yellowCircle.setConstraints([ .bottom(blueRectangle.topAnchor) ])
 ```
 Here, list of activated constraints of type `[NSLayoutConstraint]` is return to us. We can save the result in variable `dynamicConstraints`.
 <br>
+<br>
 
-### 2. Update Constraints
+### 2. UPDATE CONSTRAINTS
 ```swift
 // Deactivate dynamic constraints
 dynamicConstraints.forEach { $0.isActive = false }
