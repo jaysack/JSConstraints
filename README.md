@@ -10,10 +10,6 @@
 - - - -
 <br>
 
-## What’s JSConstraints?
-- - - -
-<br>
-
 ## Installation
 JSConstraints is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
@@ -104,13 +100,14 @@ otherView(layoutGuide: view.safeAreaLayoutGuide)
 
 ## How About Dynamic Constraints?
 **JSConstraints** methods always return the collection of successfully activated constraints. We can it to toggle constraints between `active` and `inactive` state as follows.
+<br>
 
 ### 1. GET CONSTRAINTS REFERENCES
 ```swift
 // Get constraints refs returned
 var dynamicConstraints: [NSLayoutConstraint] = yellowCircle.setConstraints([ .bottom(blueRectangle.topAnchor) ])
 ```
-Here, list of activated constraints of type `[NSLayoutConstraint]` is return to us. We can save the result in variable `dynamicConstraints`.
+Here, a list of activated constraints of type `[NSLayoutConstraint]` is returned to us. We can save the result in the variable called `dynamicConstraints`.
 <br>
 <br>
 
@@ -122,7 +119,7 @@ dynamicConstraints.forEach { $0.isActive = false }
 // Set new constraints
 yellowCircle.centerIn(superview: self.view)
 ```
-Here’s we’re setting up `isActive` property of active constraints to `false`. Then, we add new constraints
+Here, we’re setting up our constraints `isActive` property to `false`. Then, we add new constraints
 - - - -
 <br>
 
