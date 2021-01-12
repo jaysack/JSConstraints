@@ -22,14 +22,14 @@ pod 'JSConstraints'
 
 ## How It Works?
 
-### ADDING CONSTRAINTS
+### Adding Constraints
 ```swift
-// First, add pink square to its superview
+// 1. Add to superview
 view.addSubview(pinkSquare)
 
-// Then, set constraints
+// 2. Set constraints
 pinkSquare.setConstraints([
-.bottom(view.safeAreaLayoutGuide.bottomAnchor) + .constant(18),
+.bottom(view.safeAreaLayoutGuide.bottomAnchor),
 .leading(view.leadingAnchor) + .constant(35)
 ])
 ```
@@ -37,15 +37,15 @@ pinkSquare.setConstraints([
 <br>
 
 #### What Just Happened?
-1. We constrained `pinkSquare` **18 points** from our view’s safe area layout guide’s bottom
+1. We constrained `pinkSquare` to our view’s safe area layout guide’s bottom
 ```swift
 let bottomConstraint = .bottom(view.safeAreaLayoutGuide.bottomAnchor) + .constant(18)
 ```
 <br>
 
-2. We also constrained `pinkSquare` **15 points** from our view’s leading anchor
+2. We also constrained `pinkSquare` **35 points** from our view’s leading anchor
 ```swift
-let leadingConstraint = .leading(view.leadingAnchor) + .constant(15)
+let leadingConstraint = .leading(view.leadingAnchor) + .constant(35)
 ```
 <br>
 
@@ -65,7 +65,23 @@ You can also write with JSConstraint enums directly with '.anchor() + .constant(
 - - - -
 <br>
 
-### CENTERING A VIEW
+### Reliative Constraints
+```swift
+indigoView.relWidth(pinkSquare.widthAnchor) * .multiplier(2.15)
+```
+<img src="JSConstraints/Demo/indigo_rel_width_image.png" alt="relative width constraint" width="300">
+<br>
+
+#### What Just Happened?
+We set the width of `indigoView` to be `2.15` times the one of `pinkSquare`.
+<br>
+
+#### Note
+The multiplier is optional and replaced by `1` if not provided
+<br>
+- - - -
+
+### Centering a View
 ```swift
 yellowCircle.centerIn(superview: self.view)
 ```
@@ -78,7 +94,7 @@ We constrained `yellowCircle` in the **center** of the main view
 <br>
 
 
-### PIN TO SUPERVIEW
+### Pin to Superview
 ```swift
 let padding: CGFloat = 18
 indigoView.pinTo(superview: self.view, adding: padding)
@@ -102,7 +118,7 @@ otherView(layoutGuide: view.safeAreaLayoutGuide)
 **JSConstraints** methods always return the collection of successfully activated constraints. We can use it to toggle between  `active` and `inactive` state as follows.
 <br>
 
-### 1. GET CONSTRAINTS REFERENCES
+### 1. Get Constraints Refs
 ```swift
 // Get constraints refs returned
 var dynamicConstraints: [NSLayoutConstraint] = yellowCircle.setConstraints([ .bottom(blueRectangle.topAnchor) ])
@@ -111,7 +127,7 @@ Here, a list of activated constraints of type `[NSLayoutConstraint]` is returned
 <br>
 <br>
 
-### 2. UPDATE CONSTRAINTS
+### 2. Update Constraints
 ```swift
 // Deactivate dynamic constraints
 dynamicConstraints.forEach { $0.isActive = false }

@@ -10,12 +10,12 @@ import UIKit
 // MARK: - Custom Constraint Operators
 // Custom Operator => i.e: .top(view.topAnchor) + .constant(18)
 public func + (lhs: JSConstraint, rhs: JSConstraint) -> JSConstraint {
-    return JSConstraint.constructor(lhs, rhs.constantRawValue)
+    return JSConstraint.arithmeticConstructor(lhs, rhs.constantRawValue)
 }
 
 // Custom Operator => i.e: .top(view.topAnchor) - .constant(18)
 public func - (lhs: JSConstraint, rhs: JSConstraint) -> JSConstraint {
-    return JSConstraint.constructor(lhs, -rhs.constantRawValue)
+    return JSConstraint.arithmeticConstructor(lhs, -rhs.constantRawValue)
 }
 
 // Custom Operator => i.e: .top(view.widthAnchor) * .multiplier(0.5)
@@ -151,15 +151,15 @@ public extension UIView {
                 let heightConstraint = self.heightAnchor.constraint(equalToConstant: constant)
                 [widthConstraint, heightConstraint].forEach { activedConstraints.append(activated($0)) }
 
-            case .anchoredWidth(let anchor):
+            case .relWidth(let anchor):
                 let constraint = self.widthAnchor.constraint(equalTo: anchor)
                 activedConstraints.append(activated(constraint))
 
-            case .anchoredHeight(let anchor):
+            case .relHeight(let anchor):
                 let constraint = self.heightAnchor.constraint(equalTo: anchor)
                 activedConstraints.append(activated(constraint))
 
-            case .anchoredSides(let anchor):
+            case .relSides(let anchor):
                 let widthConstraint = self.widthAnchor.constraint(equalTo: anchor)
                 let heightConstraint = self.heightAnchor.constraint(equalTo: anchor)
                 [widthConstraint, heightConstraint].forEach { activedConstraints.append(activated($0)) }
@@ -171,15 +171,15 @@ public extension UIView {
             // Constraints and multiplier values
             case .multiplierConstructor(let anchor, let multiplier):
                 switch anchor {
-                case .anchoredWidth(let widthAnchor):
+                case .relWidth(let widthAnchor):
                     let constraint = self.widthAnchor.constraint(equalTo: widthAnchor, multiplier: multiplier)
                     activedConstraints.append(activated(constraint))
 
-                case .anchoredHeight(let heightAnchor):
+                case .relHeight(let heightAnchor):
                     let constraint = self.heightAnchor.constraint(equalTo: heightAnchor, multiplier: multiplier)
                     activedConstraints.append(activated(constraint))
                     
-                case .anchoredSides(let anchor):
+                case .relSides(let anchor):
                     let widthConstraint = self.widthAnchor.constraint(equalTo: anchor, multiplier: multiplier)
                     let heightConstraint = self.heightAnchor.constraint(equalTo: anchor, multiplier: multiplier)
                     [widthConstraint, heightConstraint].forEach { activedConstraints.append(activated($0)) }
@@ -189,7 +189,7 @@ public extension UIView {
                 }
 
             // Constraints and constant values
-            case .constructor(let anchor, let constant):
+            case .arithmeticConstructor(let anchor, let constant):
                 switch anchor {
                 case .top(let topAnchor):
                     let constraint = self.topAnchor.constraint(equalTo: topAnchor, constant: constant)
@@ -247,14 +247,14 @@ public enum JSConstraint {
     case sides(CGFloat)
 
     // Relative constraints
-    case anchoredWidth(NSLayoutDimension)
-    case anchoredHeight(NSLayoutDimension)
-    case anchoredSides(NSLayoutDimension)
+    case relWidth(NSLayoutDimension)
+    case relHeight(NSLayoutDimension)
+    case relSides(NSLayoutDimension)
 
     // Utilities
     case constant(CGFloat)
     case multiplier(CGFloat)
-    indirect case constructor(JSConstraint, CGFloat)
+    indirect case arithmeticConstructor(JSConstraint, CGFloat)
     indirect case multiplierConstructor(JSConstraint, CGFloat)
 
     var constantRawValue: CGFloat {
