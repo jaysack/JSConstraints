@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'JSConstraints'
-  s.version          = '0.2.1'
+  s.version          = '0.3.0'
   s.summary          = 'Layout Framework for Swift UIKit'
 
 # This description is used to generate tags and improve search results.
@@ -27,7 +27,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/jaysack/JSConstraints.git', :tag => s.version.to_s }
   s.frameworks = 'UIKit'
   s.ios.deployment_target = '11.0'
-  s.source_files = 'JSConstraints/Classes/**/*'
+  s.source_files = 'Sources/**/*'
   s.swift_version = '5.0'
   
   # s.resource_bundles = {
