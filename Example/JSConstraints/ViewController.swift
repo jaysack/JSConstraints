@@ -68,8 +68,8 @@ class ViewController: UIViewController {
         pinkSquare.setConstraints([
             .bottom(cyanRectangle.bottomAnchor) - .constant(30),
             .leading(cyanRectangle.trailingAnchor) - .constant(30),
-            .anchoredHeight(cyanRectangle.widthAnchor),
-            .anchoredWidth(view.widthAnchor) * .multiplier(0.3)
+            .relHeight(cyanRectangle.widthAnchor),
+            .relWidth(view.widthAnchor) * .multiplier(0.3)
         ])
         
         // 3. Animate everything
