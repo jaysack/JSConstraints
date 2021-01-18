@@ -69,8 +69,8 @@
 		D786AEEC545077B6FF972A9343178D16 /* Pods-JSConstraints_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-JSConstraints_Tests-Info.plist"; sourceTree = "<group>"; };
 		E42CB93265A11563277BCB82F32A7323 /* JSConstraints.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JSConstraints.debug.xcconfig; sourceTree = "<group>"; };
 		E652CAE3EBD9C47E18B170529E9E1D52 /* Pods-JSConstraints_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-JSConstraints_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		E6856BC32584612D00250978 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIView+Extension.swift"; path = "Sources/UIView+Extension.swift"; sourceTree = "<group>"; };
-		E6856BD02584622E00250978 /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIStackView+Extension.swift"; path = "Sources/UIStackView+Extension.swift"; sourceTree = "<group>"; };
+		E6856BC32584612D00250978 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIView+Extension.swift"; path = "Sources/JSConstraints/UIView+Extension.swift"; sourceTree = "<group>"; };
+		E6856BD02584622E00250978 /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIStackView+Extension.swift"; path = "Sources/JSConstraints/UIStackView+Extension.swift"; sourceTree = "<group>"; };
 		EB58963DB18DDF776C79FE83BDA7EC62 /* Pods-JSConstraints_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JSConstraints_Tests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
