@@ -5,6 +5,7 @@
 //  Created by Jonathan Sack
 //
 
+#if canImport(UIKit)
 import UIKit
 
 public extension UIStackView {
@@ -38,4 +39,4 @@ public extension UIStackView {
                                                                 trailing: trailing)
     }
 }
-
+#endif

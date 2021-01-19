@@ -5,6 +5,7 @@
 //  Created by Jonathan Sack
 //
 
+#if canImport(UIKit)
 import UIKit
 
 // MARK: - Custom Constraint Operators
@@ -266,3 +267,4 @@ public enum JSConstraint {
         }
     }
 }
+#endif
