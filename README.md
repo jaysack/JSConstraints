@@ -34,6 +34,14 @@ https://github.com/jaysack/JSConstraints
 
 ## 📓 How It Works?
 
+### Import Library
+First, import the library
+```swift
+import JSConstraints
+```
+- - - -
+<br>
+
 ### Adding Constraints
 ```swift
 // 1. Add to superview
@@ -159,6 +167,7 @@ Here, we’re deactivating our optional constraints, then, adding new constraint
 
 ### 3. Animation
 <img src="https://jonathansack.io/swift/framework/jsconstraints/dynamic_constraints/animation.png" alt="Indigo view pinned to superview in Xcode simulator" height="500">
+
 - - - -
 <br>
 
