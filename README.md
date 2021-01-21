@@ -1,10 +1,11 @@
-<img src="https://unsplash.com/photos/JZ8AHFr2aEg" alt="Photo by Bryson Hammer on Unsplash" height="500">
+<img src="https://images.unsplash.com/photo-1520359319979-f360d010d777?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Photo by Bryson Hammer on Unsplash" height="500">
 
 # JSConstraints
 
 [![Version](https://img.shields.io/cocoapods/v/JSConstraints.svg?style=flat)](https://cocoapods.org/pods/JSConstraints)
-[![License](https://img.shields.io/cocoapods/l/JSConstraints.svg?style=flat)](https://cocoapods.org/pods/JSConstraints)
+![CI](https://github.com/jaysack/JSConstraints/workflows/status/badge.svg)
 [![Platform](https://img.shields.io/cocoapods/p/JSConstraints.svg?style=flat)](https://cocoapods.org/pods/JSConstraints)
+[![License](https://img.shields.io/cocoapods/l/JSConstraints.svg?style=flat)](https://cocoapods.org/pods/JSConstraints)
 
 > 💡 A tiny Swift library written with only one thing in mind: **Blazin' Fast Programmatic Constraints-Typing**
 
@@ -25,7 +26,7 @@ pod 'JSConstraints'
 
 ### Swift Package Manager
 Using SPM instead? In Xcode project, select **File** > **Swift Package** > **Add Package Dependecy** and enter the repo URL below.
-```ruby
+```
 https://github.com/jaysack/JSConstraints
 ```
 - - - -
@@ -69,7 +70,7 @@ view.addSubview(pinkSquare)
 // Set constraints
 pinkSquare.setConstraints([ bottomConstraint, leadingConstraint ])
 ```
-> 💡 The `constant` argument is optional and replaced by `0` if not provided
+> 💡 `constant` argument is optional and replaced by `0` if not provided\
 > 💡 You can also write with JSConstraint enums directly with '.anchor() + .constant()' format
 - - - -
 <br>
@@ -83,7 +84,7 @@ indigoView.relWidth(pinkSquare.widthAnchor) * .multiplier(2)
 
 #### What Just Happened?
 We set the width of `indigoView` to be twice ( 2 times) as big as  `pinkSquare` width.
-> 💡 The `multiplier` argument is optional and replaced by `1` if not provided
+> 💡 `multiplier` argument is optional and replaced by `1` if not provided
 - - - -
 <br>
 
@@ -121,7 +122,7 @@ indigoView.pinTo(superview: self.view, withPadding: 18)
 <br>
 
 ## What About `UILayoutGuide` Cases?
-Depending on your design, you may opt to pin your view to either your ViewController's `view` or it's `layoutGuide` as both are supported with JSConstraints.
+Depending on your design, you may opt to pin your view to either your ViewController's `view` or it's `layoutGuide` as both are supported with JSConstraints.\
 Using `layoutGuide` will automatically add a child view to the layout guide's owner view:
 ```swift
 indigoView.pinTo(layoutGuide: view.safeAreaLayoutGuide) 
@@ -142,7 +143,7 @@ We can use it to toggle between  `active` and `inactive` states.
 // Save returned constraints
 var dynamicConstraints = yellowCircle.setConstraints([ .bottom(blueRectangle.topAnchor) ])
 ```
-Here, a list of activated constraints of type `[NSLayoutConstraint]` is returned to us. We can save the result in `dynamicConstraints` variable.
+Here, a list of activated constraints of type `[NSLayoutConstraint]` is returned to us. We can save the result in `dynamicConstraints` variable.\
 <br>
 
 ### 2. Update Constraints
@@ -157,7 +158,7 @@ Here, we’re deactivating our optional constraints, then, adding new constraint
 - - - -
 <br>
 
-### Animation
+### 3. Animation
 <img src="https://jonathansack.io/swift/framework/jsconstraints/dynamic_constraints/animation.png" alt="Indigo view pinned to superview in Xcode simulator" height="500">
 <br>
 
@@ -167,7 +168,7 @@ Jonathan Sack\
 <br>
 
 ## License
-Copyright © 2020 jaysack <email@jonathansack.io>
+Copyright © 2020 Jonathan Sack
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
