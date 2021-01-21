@@ -7,7 +7,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/JSConstraints.svg?style=flat)](https://cocoapods.org/pods/JSConstraints)
 [![License](https://img.shields.io/cocoapods/l/JSConstraints.svg?style=flat)](https://cocoapods.org/pods/JSConstraints)
 
-> 💡 A tiny Swift library written with only one thing in mind: **Blazin' Fast Programmatic Constraints-Typing**
+> 💡 - A tiny Swift library written with only one thing in mind: **Blazin' Fast Programmatic Constraints-Typing**
 
 JSConstraints is a really small library extending `UIView` and `UIStackView` functionalities
 - - - -
@@ -70,8 +70,9 @@ view.addSubview(pinkSquare)
 // Set constraints
 pinkSquare.setConstraints([ bottomConstraint, leadingConstraint ])
 ```
-> 💡 `constant` argument is optional and replaced by `0` if not provided\
-> 💡 You can also write with JSConstraint enums directly with '.anchor() + .constant()' format
+> 💡 - `constant` argument is optional and replaced by `0` if not provided\
+<br>
+> 💡 - You can also write with JSConstraint enums directly with '.anchor() + .constant()' format
 - - - -
 <br>
 
@@ -84,7 +85,7 @@ indigoView.relWidth(pinkSquare.widthAnchor) * .multiplier(2)
 
 #### What Just Happened?
 We set the width of `indigoView` to be twice ( 2 times) as big as  `pinkSquare` width.
-> 💡 `multiplier` argument is optional and replaced by `1` if not provided
+> 💡 - `multiplier` argument is optional and replaced by `1` if not provided
 - - - -
 <br>
 
@@ -121,7 +122,7 @@ indigoView.pinTo(superview: self.view, withPadding: 18)
 - - - -
 <br>
 
-## What About `UILayoutGuide` Cases?
+## ⚠️ What About `UILayoutGuide` Cases?
 Depending on your design, you may opt to pin your view to either your ViewController's `view` or it's `layoutGuide` as both are supported with JSConstraints.\
 Using `layoutGuide` will automatically add a child view to the layout guide's owner view:
 ```swift
@@ -133,7 +134,7 @@ indigoView.pinTo(layoutGuide: view.safeAreaLayoutGuide)
 <br>
 
 
-## How About Dynamic Constraints?
+## ♻️ How About Dynamic Constraints?
 JSConstraints methods always return the collection of successfully activated constraints.\
 We can use it to toggle between  `active` and `inactive` states.
 <br>
@@ -162,12 +163,12 @@ Here, we’re deactivating our optional constraints, then, adding new constraint
 <img src="https://jonathansack.io/swift/framework/jsconstraints/dynamic_constraints/animation.png" alt="Indigo view pinned to superview in Xcode simulator" height="500">
 <br>
 
-## Author
+## ✉️ Author
 Jonathan Sack\
-✉️  email@jonathansack.io
+email@jonathansack.io
 <br>
 
-## License
+## 🔏 License
 Copyright © 2020 Jonathan Sack
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
