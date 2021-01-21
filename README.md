@@ -7,7 +7,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/JSConstraints.svg?style=flat)](https://cocoapods.org/pods/JSConstraints)
 [![License](https://img.shields.io/cocoapods/l/JSConstraints.svg?style=flat)](https://cocoapods.org/pods/JSConstraints)
 
-> 💡 - A tiny Swift library written with only one thing in mind: **Blazin' Fast Programmatic Constraints-Typing**
+> 💡 A tiny Swift library written with only one thing in mind: **Blazin' Fast Programmatic Constraints-Typing**
 
 JSConstraints is a really small library extending `UIView` and `UIStackView` functionalities
 - - - -
@@ -78,7 +78,7 @@ view.addSubview(pinkSquare)
 // Set constraints
 pinkSquare.setConstraints([ bottomConstraint, leadingConstraint ])
 ```
-> 💡 - `constant` argument is optional and replaced by `0` if not provided
+> 💡 `constant` argument is optional and replaced by `0` if not provided
 - - - -
 <br>
 
@@ -91,7 +91,7 @@ indigoView.relWidth(pinkSquare.widthAnchor) * .multiplier(2)
 
 #### What Just Happened?
 We set the width of `indigoView` to be twice ( 2 times) as big as  `pinkSquare` width.
-> 💡 - `multiplier` argument is optional and replaced by `1` if not provided
+> 💡 `multiplier` argument is optional and replaced by `1` if not provided
 - - - -
 <br>
 
