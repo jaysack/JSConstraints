@@ -14,23 +14,23 @@ JSConstraints is a really small library extending `UIView` and `UIStackView` fun
 <br>
 
 ## Table Of Content
-- [Installation](#-installation)
+- [📥%20Installation](#-installation)
     * [Cocoapods](#cocoapods)
     * [Swift Package Manager](#swift-package-manager)
-- [How It Works](#-how-it-works)
+- [📓%20How It Works](#-how-it-works)
     * [Import Library](#import-library)
     * [Adding Constraints](#adding-constraints)
     * [Relative Constraints](#relative-constraints)
     * [Sides](#sides)
     * [Centering a View](#centering-a-view)
     * [Pin to Superview](#pin-to-superview)
-- [UILayoutGuide Edge Cases](#%EF%B8%8F-what-about-uilayoutguide-cases)
-- [♻️ Dynamic Constraints](#%EF%B8%8F-how-about-dynamic-constraints)
-        * [Prepare Constraints](#1-get-active-constraints)
-        * [Update Constraints](#2-update-constraints)
-        * [Animate](#3-animation)
-- [✉️ Author](#%EF%B8%8F-author)
-- [🔏 License](#-license)
+- [⚠️%20UILayoutGuide Edge Cases](#%EF%B8%8F-what-about-uilayoutguide-cases)
+- [♻️%20Dynamic Constraints](#%EF%B8%8F-how-about-dynamic-constraints)
+    * [Prepare Constraints](#1-get-active-constraints)
+    * [Update Constraints](#2-update-constraints)
+    * [Animate](#3-animation)
+- [✉️%20Author](#%EF%B8%8F-author)
+- [🔏%20License](#-license)
 - - - -
 <br>
 
