@@ -70,9 +70,7 @@ view.addSubview(pinkSquare)
 // Set constraints
 pinkSquare.setConstraints([ bottomConstraint, leadingConstraint ])
 ```
-> 💡 - `constant` argument is optional and replaced by `0` if not provided\
-<br>
-> 💡 - You can also write with JSConstraint enums directly with '.anchor() + .constant()' format
+> 💡 - `constant` argument is optional and replaced by `0` if not provided
 - - - -
 <br>
 
@@ -161,11 +159,13 @@ Here, we’re deactivating our optional constraints, then, adding new constraint
 
 ### 3. Animation
 <img src="https://jonathansack.io/swift/framework/jsconstraints/dynamic_constraints/animation.png" alt="Indigo view pinned to superview in Xcode simulator" height="500">
+- - - -
 <br>
 
 ## ✉️ Author
 Jonathan Sack\
 email@jonathansack.io
+- - - -
 <br>
 
 ## 🔏 License
