@@ -15,11 +15,11 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v2
           
-        - name: Select Xcode
+        - name: Select Xcode 12
           run: sudo xcode-select -switch /Applications/Xcode_12.3.app
         
         - name: Generate Xcode Project
           run: swift package generate-xcodeproj
 
         - name: Run Test
-          run: xcodebuild clean test -destination 'name=iPhone 11' -scheme 'JSConstraints-Package'
+          run: xcodebuild clean test -project JSConstraints.xcodeproj -destination 'name=iPhone 11' -scheme 'JSConstraints-Package'
