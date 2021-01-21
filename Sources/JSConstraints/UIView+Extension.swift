@@ -27,6 +27,19 @@ public func * (lhs: JSConstraint, rhs: JSConstraint) -> JSConstraint {
 public extension UIView {
     
     // MARK: - Pin to Superview
+    /**
+         Pin child view to superview's edges minus padding value provided as argument.
+         The method returns all activated constraints
+         
+         - parameter superview: self's parent
+         - parameter padding: horizontal and vertical padding
+         
+         - returns: An array of activated constraints
+    */
+    @discardableResult
+    func pinTo(superview: UIView, withPadding padding: CGFloat = 0) -> [NSLayoutConstraint] {
+        return pinTo(superview: superview, xPadding: padding, yPadding: padding)
+    }
 /**
      Pin child view to superview's edges minus padding value provided as argument.
      The method returns all activated constraints
@@ -49,6 +62,19 @@ public extension UIView {
     }
 
     // MARK: - Pin to Superview safe area layout guide
+    /**
+         Pin child view to superview's layout guide's edges minus padding value provided as argument.
+         The method returns all activated constraints
+         
+         - parameter layoutGuide: self's parent's layout guide
+         - parameter padding: horizontal and veritcal padding
+         
+         - returns: An array of activated constraints
+    */
+    @discardableResult
+    func pinTo(layoutGuide: UILayoutGuide, withPadding padding: CGFloat = 0) -> [NSLayoutConstraint] {
+        return pinTo(layoutGuide: layoutGuide, xPadding: padding, yPadding: padding)
+    }
     /**
          Pin child view to superview's layout guide's edges minus padding value provided as argument.
          The method returns all activated constraints

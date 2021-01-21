@@ -1,26 +1,37 @@
+<img src="https://unsplash.com/photos/JZ8AHFr2aEg" alt="Photo by Bryson Hammer on Unsplash" height="500">
+
 # JSConstraints
 
 [![Version](https://img.shields.io/cocoapods/v/JSConstraints.svg?style=flat)](https://cocoapods.org/pods/JSConstraints)
 [![License](https://img.shields.io/cocoapods/l/JSConstraints.svg?style=flat)](https://cocoapods.org/pods/JSConstraints)
 [![Platform](https://img.shields.io/cocoapods/p/JSConstraints.svg?style=flat)](https://cocoapods.org/pods/JSConstraints)
 
-> A tiny Swift library written with only one thing in mind: *Blazin Fast Programmatic Constraints-Typing*
+> 💡 A tiny Swift library written with only one thing in mind: **Blazin' Fast Programmatic Constraints-Typing**
 
-**JSConstraints** is a really small library extending `UIView` and `UIStackView` functionalities
+JSConstraints is a really small library extending `UIView` and `UIStackView` functionalities
 - - - -
 <br>
 
-## Installation
-JSConstraints is available through [CocoaPods](https://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+## 📥 Installation
+JSConstraints is available through [CocoaPods](https://cocoapods.org) and [Swift Package Manager](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app). 
+
+### Cocoapods
+To install via Cocoapods, simply add the following line to your Podfile:
 
 ```ruby
 pod 'JSConstraints'
 ```
+<br>
+
+### Swift Package Manager
+Using SPM instead? In Xcode project, select **File** > **Swift Package** > **Add Package Dependecy** and enter the repo URL below.
+```ruby
+https://github.com/jaysack/JSConstraints
+```
 - - - -
 <br>
 
-## How It Works?
+## 📓 How It Works?
 
 ### Adding Constraints
 ```swift
@@ -29,23 +40,23 @@ view.addSubview(pinkSquare)
 
 // 2. Set constraints
 pinkSquare.setConstraints([
-.bottom(view.safeAreaLayoutGuide.bottomAnchor),
-.leading(view.leadingAnchor) + .constant(35)
+    .bottom(view.bottomAnchor),
+    .leading(view.leadingAnchor) + .constant(18)
 ])
 ```
-<img src="JSConstraints/Demo/pink_square_image.png" alt="pink square in Xcode simulator" width="300">
+<img src="https://jonathansack.io/swift/framework/jsconstraints/how_it_works/adding_constraints.png" alt="Pink square in Xcode simulator" height="500">
 <br>
 
 #### What Just Happened?
-1. We constrained `pinkSquare` to our view’s safe area layout guide’s bottom
+1. We constrained `pinkSquare` to our view’s bottom anchor
 ```swift
-let bottomConstraint = .bottom(view.safeAreaLayoutGuide.bottomAnchor) + .constant(18)
+let bottomConstraint = .bottom(view.bottomAnchor)
 ```
 <br>
 
-2. We also constrained `pinkSquare` **35 points** from our view’s leading anchor
+2. We also constrained `pinkSquare` 18 points away from our view’s leading anchor
 ```swift
-let leadingConstraint = .leading(view.leadingAnchor) + .constant(35)
+let leadingConstraint = .leading(view.leadingAnchor) + .constant(18)
 ```
 <br>
 
@@ -57,96 +68,121 @@ view.addSubview(pinkSquare)
 
 // Set constraints
 pinkSquare.setConstraints([ bottomConstraint, leadingConstraint ])
-
-/*
-You can also write with JSConstraint enums directly with '.anchor() + .constant()' format
-*/
 ```
+> 💡 The `constant` argument is optional and replaced by `0` if not provided
+> 💡 You can also write with JSConstraint enums directly with '.anchor() + .constant()' format
 - - - -
 <br>
 
 ### Reliative Constraints
 ```swift
-indigoView.relWidth(pinkSquare.widthAnchor) * .multiplier(2.15)
+indigoView.relWidth(pinkSquare.widthAnchor) * .multiplier(2)
 ```
-<img src="JSConstraints/Demo/indigo_rel_width_image.png" alt="relative width constraint" width="300">
+<img src="https://jonathansack.io/swift/framework/jsconstraints/how_it_works/relative_constraints.png" alt="Indigo rectangle in Xcode simulator" height="500">
 <br>
 
 #### What Just Happened?
-We set the width of `indigoView` to be `2.15` times the one of `pinkSquare`.
+We set the width of `indigoView` to be twice ( 2 times) as big as  `pinkSquare` width.
+> 💡 The `multiplier` argument is optional and replaced by `1` if not provided
+- - - -
 <br>
 
-#### Note
-The multiplier is optional and replaced by `1` if not provided
-<br>
+### Sides
+The `.side()` enum allows you to create square views quickly by setting both the view's width and height to the same value.
+```swift
+pinkSquare.setConstraints([ .sides(165) ])
+```
+
+#### What Just Happened?
+We set both `width` and `height` constraints to `165`.
 - - - -
+<br>
 
 ### Centering a View
 ```swift
 yellowCircle.centerIn(superview: self.view)
 ```
-<img src="JSConstraints/Demo/yellow_circle_image.png" alt="yellow circle in Xcode simulator" width="300">
+<img src="https://jonathansack.io/swift/framework/jsconstraints/how_it_works/centering_a_view.png" alt="Yellow circle in Xcode simulator" height="500">
 <br>
 
 #### What Just Happened?
-We constrained `yellowCircle` in the **center** of the main view
+We constrained `yellowCircle` in the **center** of the the screen.
 - - - -
 <br>
 
 
 ### Pin to Superview
 ```swift
-let padding: CGFloat = 18
-indigoView.pinTo(superview: self.view, adding: padding)
+indigoView.pinTo(superview: self.view, withPadding: 18)
 ```  
-<img src="JSConstraints/Demo/indigo_view_image.png" alt="yellow circle in Xcode simulator" width="300">
+<img src="https://jonathansack.io/swift/framework/jsconstraints/how_it_works/pin_to_superview.png" alt="Indigo view pinned to superview in Xcode simulator" height="500">
+
+- - - -
 <br>
 
-#### Note
+## What About `UILayoutGuide` Cases?
+Depending on your design, you may opt to pin your view to either your ViewController's `view` or it's `layoutGuide` as both are supported with JSConstraints.
+Using `layoutGuide` will automatically add a child view to the layout guide's owner view:
 ```swift
-/*
-If you pass an instance of `UILayoutGuide`, Our `indigoView` will also be inserted automatically to `superview`
-*/
+indigoView.pinTo(layoutGuide: view.safeAreaLayoutGuide) 
 
-otherView(layoutGuide: view.safeAreaLayoutGuide)
+// Indigo view was automatically added to `view` subviews
 ```
 - - - -
 <br>
 
 
 ## How About Dynamic Constraints?
-**JSConstraints** methods always return the collection of successfully activated constraints. We can use it to toggle between  `active` and `inactive` state as follows.
+JSConstraints methods always return the collection of successfully activated constraints.\
+We can use it to toggle between  `active` and `inactive` states.
 <br>
 
-### 1. Get Constraints Refs
+### 1. Get Active Constraints
 ```swift
-// Get constraints refs returned
-var dynamicConstraints: [NSLayoutConstraint] = yellowCircle.setConstraints([ .bottom(blueRectangle.topAnchor) ])
+// Save returned constraints
+var dynamicConstraints = yellowCircle.setConstraints([ .bottom(blueRectangle.topAnchor) ])
 ```
-Here, a list of activated constraints of type `[NSLayoutConstraint]` is returned to us. We can save the result in the variable called `dynamicConstraints`.
-<br>
+Here, a list of activated constraints of type `[NSLayoutConstraint]` is returned to us. We can save the result in `dynamicConstraints` variable.
 <br>
 
 ### 2. Update Constraints
 ```swift
-// Deactivate dynamic constraints
+// Deactivate optional constraints
 dynamicConstraints.forEach { $0.isActive = false }
 
 // Set new constraints
 yellowCircle.centerIn(superview: self.view)
 ```
-Here, we’re setting up our constraints `isActive` property to `false`. Then, we add new constraints
+Here, we’re deactivating our optional constraints, then, adding new constraints
 - - - -
 <br>
 
-### Result
-<img src="JSConstraints/Demo/dynamic_constraints.gif" alt="dynamic constraints in Xcode simulator" width="300">
+### Animation
+<img src="https://jonathansack.io/swift/framework/jsconstraints/dynamic_constraints/animation.png" alt="Indigo view pinned to superview in Xcode simulator" height="500">
 <br>
 
 ## Author
-Jonathan Sack
-📨  jonathan.sack91@gmail.com
+Jonathan Sack\
+✉️  email@jonathansack.io
 <br>
 
 ## License
-JSConstraints is available under the MIT license. See the LICENSE file for more info.
+Copyright © 2020 jaysack <email@jonathansack.io>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
