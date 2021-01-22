@@ -1,4 +1,4 @@
-<img src="https://images.unsplash.com/photo-1520359319979-f360d010d777?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Photo by Bryson Hammer on Unsplash" height="500">
+<img src="https://images.unsplash.com/photo-1520359319979-f360d010d777?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Photo by Bryson Hammer on Unsplash">
 
 # JSConstraints
 
@@ -121,7 +121,7 @@ indigoView.relWidth(pinkSquare.widthAnchor) * .multiplier(2)
 <br>
 
 #### What Just Happened?
-We set the width of `indigoView` to be twice ( 2 times) as big as  `pinkSquare` width.
+We set the width of `indigoView` to be twice (2 times) as big as  `pinkSquare` width.
 > 💡 `multiplier` argument is optional and replaced by `1` if not provided
 - - - -
 <br>
