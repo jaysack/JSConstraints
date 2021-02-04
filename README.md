@@ -21,9 +21,9 @@ JSConstraints is a really small library extending `UIView` and `UIStackView` fun
 
 - [📓. How It Works](#-how-it-works)
     * [Import Library](#import-library)
-    * [Adding Constraints](#adding-constraints)
-    * [Relative Constraints](#relative-constraints)
     * [Square](#square)
+    * [Directional Constraints](#adding-constraints)
+    * [Relative Constraints](#relative-constraints)
     * [Centering a View](#centering-a-view)
     * [Pin to Superview](#pin-to-superview)
 <br>
@@ -73,32 +73,47 @@ import JSConstraints
 - - - -
 <br>
 
-### Adding Constraints
+### Square
+<img src="https://jaysack-github-readme.s3.us-east-2.amazonaws.com/jsconstraints/square-example.png" alt="Pink square in Xcode simulator" height="400">
+
+`.square(_ value: CGFloat)` is pretty straight forward and allows you to make "squared" view. It sets both width and height to the value provided.
+```swift
+pinkSquare.setConstraints([ .square(185) ])
+```
+
+#### What Just Happened?
+We set both `width` and `height` constraints to `185`.
+- - - -
+<br>
+
+### Directional Constraints
+<img src="https://jaysack-github-readme.s3.us-east-2.amazonaws.com/jsconstraints/directional-constraints-example.png" alt="Pink constraints to left and bottom in Xcode simulator" height="400">
+
 ```swift
 // 1. Add to superview
 view.addSubview(pinkSquare)
 
 // 2. Set constraints
 pinkSquare.setConstraints([
-    .bottom(view.bottomAnchor),
-    .leading(view.leadingAnchor) + .constant(18)
+    .leading(view.leadingAnchor),
+    .bottom(view.bottomAnchor) + .constant(18)
 ])
 ```
-<img src="https://jonathansack.io/swift/framework/jsconstraints/how_it_works/adding_constraints.png" alt="Pink square in Xcode simulator" height="500">
 <br>
 
 #### What Just Happened?
-1. We constrained `pinkSquare` to our view’s bottom anchor
+1. We constrained `pinkSquare` to its superview's leading anchor.
 ```swift
-let bottomConstraint = .bottom(view.bottomAnchor)
+let leadingConstraint = .leading(view.leadingAnchor)
 ```
 <br>
 
-2. We also constrained `pinkSquare` 18 points away from our view’s leading anchor
+2. We then constrained  `pinkSquare` again 18 points aways from its superview bottom anchor.
 ```swift
-let leadingConstraint = .leading(view.leadingAnchor) + .constant(18)
+let bottomConstraint = .bottom(view.bottomAnchor) + .constant(18)
 ```
 <br>
+
 
 #### Refactored Form
 Let’s put it all back together, and we get:
@@ -114,34 +129,33 @@ pinkSquare.setConstraints([ bottomConstraint, leadingConstraint ])
 <br>
 
 ### Reliative Constraints
+<img src="https://jaysack-github-readme.s3.us-east-2.amazonaws.com/jsconstraints/directional-constraints-example.png" alt="Pink constraints to left and bottom in Xcode simulator" height="400">
+
 ```swift
-indigoView.relWidth(pinkSquare.widthAnchor) * .multiplier(2)
+indigoView.setConstraints([
+    .relWidth(view.widthAnchor) * .multiplier(0.4),
+    .relHeight(pinkSquare.heightAnchor) * .multiplier(1.18)
+])
+
+// We're assuming here that the indigo view's in already in
+// its superview's stack and has been constrained from its top and right sides.
 ```
-<img src="https://jonathansack.io/swift/framework/jsconstraints/how_it_works/relative_constraints.png" alt="Indigo rectangle in Xcode simulator" height="500">
 <br>
 
 #### What Just Happened?
-We set the width of `indigoView` to be twice (2 times) as big as  `pinkSquare` width.
+We set the width of `indigoView` to be 0.4 times the size of  `view` width.
+We also set `indigoView` to be slightly taller than our `pinkSquare`.
+
 > 💡 `multiplier` argument is optional and replaced by 1 if not provided.
 - - - -
 <br>
 
-### Square
-The `.square(_ value: CGFloat)` enum allows is a quick and easy way to create creates. It sets both width and height to the value provided.
-```swift
-pinkSquare.setConstraints([ .sides(165) ])
-```
-
-#### What Just Happened?
-We set both `width` and `height` constraints to `165`.
-- - - -
-<br>
-
 ### Centering a View
+<img src="https://jaysack-github-readme.s3.us-east-2.amazonaws.com/jsconstraints/centering-view-example.png" alt="Yellow circle in Xcode simulator" height="400">
+
 ```swift
 yellowCircle.centerIn(superview: self.view)
 ```
-<img src="https://jonathansack.io/swift/framework/jsconstraints/how_it_works/centering_a_view.png" alt="Yellow circle in Xcode simulator" height="500">
 <br>
 
 #### What Just Happened?
@@ -151,10 +165,11 @@ We constrained `yellowCircle` in the **center** of the the screen.
 
 
 ### Pin to Superview
+<img src="https://jaysack-github-readme.s3.us-east-2.amazonaws.com/jsconstraints/pin-to-superview-example.png" alt="Indigo view pinned to superview in Xcode simulator" height="400">
+
 ```swift
 indigoView.pinTo(superview: self.view, withPadding: 18)
 ```  
-<img src="https://jonathansack.io/swift/framework/jsconstraints/how_it_works/pin_to_superview.png" alt="Indigo view pinned to superview in Xcode simulator" height="500">
 
 - - - -
 <br>
@@ -197,7 +212,7 @@ Here, we’re deactivating our optional constraints, then, adding new constraint
 <br>
 
 ### 3. Animation
-<img src="https://jonathansack.io/swift/framework/jsconstraints/dynamic_constraints/animation.png" alt="Indigo view pinned to superview in Xcode simulator" height="500">
+<img src="https://jaysack-github-readme.s3.us-east-2.amazonaws.com/jsconstraints/dynamic-constraints-example.gif" alt=" Subviews animations" height="400">
 
 - - - -
 <br>

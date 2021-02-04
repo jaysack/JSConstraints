@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'JSConstraints'
-  s.version          = '1.0.1'
+  s.version          = '1.0.2'
   s.summary          = 'Tiny Programmatic Constraints Framework for Swift UIKit'
 
 # This description is used to generate tags and improve search results.
@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
 
   s.homepage         = 'https://github.com/jaysack/JSConstraints'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Jonathan Sack' => 'email@jonathansack.io' }
+  s.author           = { 'Jonathan Sack' => 'dev@jonathansack.io' }
   s.source           = { :git => 'https://github.com/jaysack/JSConstraints.git', :tag => s.version.to_s }
   s.frameworks = 'UIKit'
   s.ios.deployment_target = '11.0'
