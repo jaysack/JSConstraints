@@ -7,35 +7,34 @@
 //
 
 import UIKit
+import JSConstraints
 
-// MARK: - CLASS View
+let cornerRadius: CGFloat = 4
+
 class View: UIView {
-
-    static func get(color: UIColor) -> View {
-        let view = View()
-        let contentView = View()
-        contentView.backgroundColor = color
-        contentView.pinTo(superview: view)
+    
+    required init?(coder: NSCoder) { return nil }
+    init(_ color: UIColor) {
+        super.init(frame: .zero)
+        backgroundColor = .clear
+        getInnerView(color).pinTo(superview: self)
+        addShadow()
+    }
+    
+    private func getInnerView(_ color: UIColor) -> UIView {
+        let view = UIView()
+        view.backgroundColor = color
+        view.layer.masksToBounds = true
+        view.layer.cornerRadius = cornerRadius
         return view
     }
 
-    // Init
-    required init?(coder: NSCoder) { return nil}
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    private func addShadow() {
         clipsToBounds = false
-        backgroundColor = .clear
-
-        layer.shadowRadius = 4
-        layer.shadowOpacity = 0.12
         layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOffset = CGSize(width: 1.00, height: 1.50)
-    }
-
-    // Layout subviews
-    override func layoutSubviews() {
-        subviews.first?.clipsToBounds = true
-        subviews.first?.layer.cornerRadius = 3
-        super.layoutSubviews()
+        layer.shadowOffset = CGSize(width: 1.15, height: 1.82)
+        layer.shadowOpacity = 0.23
+        layer.shadowRadius = 3
     }
 }
+

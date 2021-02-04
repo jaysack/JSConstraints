@@ -9,65 +9,100 @@
 import UIKit
 import JSConstraints
 
-// MARK: - CLASS ViewController
 class ViewController: UIViewController {
 
-    // MARK: - Dynamic Constraints
     var dynamicConstraints: [NSLayoutConstraint] = []
 
-    // MARK: - Pink Square
     lazy var pinkSquare: UIView = {
-        let view = View.get(color: .systemPink)
-        return view
+        return View(.systemPink)
     }()
 
-    // MARK: - Cyan Rectangle
-    lazy var cyanRectangle: UIView = {
-        let view = View.get(color: .cyan)
-        view.setConstraints([ .width(160), .height(380) ])
-        return view
+    lazy var indigoView: UIView = {
+        return View(.systemIndigo)
     }()
 
-    // MARK: - View Did Load
+    lazy var yellowCircle: UIView = {
+        let largeConfig = UIImage.SymbolConfiguration(textStyle: .largeTitle)
+        let circle = UIImage(systemName: "circle.fill", withConfiguration: largeConfig)!.withRenderingMode(.alwaysTemplate)
+        let imageView = UIImageView(image: circle)
+        imageView.tintColor = .systemYellow
+        return imageView
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Add subviews
-        [cyanRectangle, pinkSquare].forEach { view.addSubview($0) }
-
-        // Set rectangle constraints (REQUIRED CONSTRAINTS)
-        cyanRectangle.setConstraints([
-            .top(view.safeAreaLayoutGuide.topAnchor),
-            .leading(view.leadingAnchor) + .constant(12)
-        ])
         
-        // Set square constraints (DYNAMIC CONSTRAINTS)
-        dynamicConstraints = pinkSquare.setConstraints([
-            .square(115),
-            .xCenter(view.centerXAnchor) + .constant(75),
-            .bottom(view.safeAreaLayoutGuide.bottomAnchor) + .constant(8)
-        ])
+        // Setup UI
+        view.backgroundColor = .systemGray6
+
+        addingSubviews()
+        setZPositions()
+
+        square()
+        directionalConstraints()
+        relativeConstraints()
+        centeringView()
+//        pinToSuperview()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        // ANIMATE PINK SQUARE:
-
-        // 1. Disable constraints
         dynamicConstraints.forEach { $0.isActive = false }
-        
-        // 2. Add new constraints
-        pinkSquare.setConstraints([
-            .bottom(cyanRectangle.bottomAnchor) - .constant(30),
-            .leading(cyanRectangle.trailingAnchor) - .constant(30),
-            .relHeight(cyanRectangle.widthAnchor),
-            .relWidth(view.widthAnchor) * .multiplier(0.3)
-        ])
-        
-        // 3. Animate everything
-        UIView.animate(withDuration: 0.45, delay: 1, usingSpringWithDamping: 0.4, initialSpringVelocity: 0) { [weak self] in
-            self?.view.layoutIfNeeded()
+        [pinkSquare, indigoView].forEach { $0.centerIn(superview: view) }
+
+        UIView.animate(withDuration: 0.28, delay: 3, usingSpringWithDamping: 0.63, initialSpringVelocity: 0) {
+            self.view.layoutIfNeeded()
         }
     }
+
+    private func addingSubviews() {
+        [pinkSquare, indigoView, yellowCircle].forEach { view.addSubview($0) }
+    }
+
+    // MARK: - Z-Positions
+    private func setZPositions() {
+        yellowCircle.layer.zPosition = 3
+        pinkSquare.layer.zPosition = 2
+        indigoView.layer.zPosition = 1
+    }
+
+    // MARK: - Square
+    private func square() {
+        pinkSquare.setConstraints([ .square(190) ])
+    }
+    
+    // MARK: - Directional Constraints
+    private func directionalConstraints() {
+        let pinkConstraints = pinkSquare.setConstraints([
+            .leading(view.leadingAnchor),
+            .bottom(view.bottomAnchor) + .constant(18)
+        ])
+        dynamicConstraints.append(contentsOf: pinkConstraints)
+    }
+
+    // MARK: - Directional Constraints
+    private func relativeConstraints() {
+        indigoView.setConstraints([
+            .relWidth(view.widthAnchor) * .multiplier(0.4),
+            .relHeight(pinkSquare.heightAnchor) * .multiplier(1.18)
+        ])
+        let optionalConstraints = indigoView.setConstraints([
+            .top(view.topAnchor) + .constant(32),
+            .trailing(view.trailingAnchor) + .constant(12)
+        ])
+        dynamicConstraints.append(contentsOf: optionalConstraints)
+    }
+    
+    // MARK: - Centering View
+    private func centeringView() {
+        yellowCircle.setConstraints([ .square(75) ])
+        yellowCircle.centerIn(superview: view)
+    }
+    
+    // MARK: - Pin To Superview
+    private func pinToSuperview() {
+        indigoView.pinTo(superview: view, withPadding: 18)
+    }
 }
+

@@ -76,7 +76,7 @@ import JSConstraints
 ### Square
 <img src="https://jaysack-github-readme.s3.us-east-2.amazonaws.com/jsconstraints/square-example.png" alt="Pink square in Xcode simulator">
 
-`.square(_ value: CGFloat)` is pretty straight forward and allows you to make "squared" view. It sets both width and height to the value provided.
+The `.square()` enum is pretty straight forward and allows you to make "squared" view. It sets both, width and height, to the value provided.
 ```swift
 pinkSquare.setConstraints([ .square(185) ])
 ```
