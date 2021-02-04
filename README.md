@@ -129,7 +129,7 @@ pinkSquare.setConstraints([ bottomConstraint, leadingConstraint ])
 <br>
 
 ### Reliative Constraints
-<img src="https://jaysack-github-readme.s3.us-east-2.amazonaws.com/jsconstraints/directional-constraints-example.png" alt="Pink constraints to left and bottom in Xcode simulator">
+<img src="https://jaysack-github-readme.s3.us-east-2.amazonaws.com/jsconstraints/relative-constraints-example.png" alt="Pink constraints to left and bottom in Xcode simulator">
 
 ```swift
 indigoView.setConstraints([
@@ -143,7 +143,7 @@ indigoView.setConstraints([
 <br>
 
 #### What Just Happened?
-We set the width of `indigoView` to be 0.4 times the size of  `view` width.
+We set the width of `indigoView` to be 0.4 times the size of  `view` width.\
 We also set `indigoView` to be slightly taller than our `pinkSquare`.
 
 > 💡 `multiplier` argument is optional and replaced by 1 if not provided.
@@ -194,7 +194,12 @@ We can use it to toggle between  `active` and `inactive` states.
 ### 1. Get Active Constraints
 ```swift
 // Save returned constraints
-var dynamicConstraints = yellowCircle.setConstraints([ .bottom(blueRectangle.topAnchor) ])
+var pinkOptionalConstraints = pinkSquare.setConstraints([ bottomConstraint, leadingConstraint ])
+var indigoOptionalConstraints = indigoView.setConstraints([ topConstraint, trailingConstraint ])
+
+// Append to array of dynamic constraints
+dynamicConstraints.append(contentsOf: pinkOptionalConstraints)
+dynamicConstraints.append(contentsOf: indigoOptionalConstraints)
 ```
 Here, a list of activated constraints of type `[NSLayoutConstraint]` is returned to us. We can save the result in `dynamicConstraints` variable.\
 <br>
@@ -205,7 +210,7 @@ Here, a list of activated constraints of type `[NSLayoutConstraint]` is returned
 dynamicConstraints.forEach { $0.isActive = false }
 
 // Set new constraints
-yellowCircle.centerIn(superview: self.view)
+[pinkSquare, indigoView].forEach { $0.centerIn(superview: view) }
 ```
 Here, we’re deactivating our optional constraints, then, adding new constraints.
 - - - -
@@ -219,7 +224,7 @@ Here, we’re deactivating our optional constraints, then, adding new constraint
 
 ## ✉️ Author
 Jonathan Sack\
-mailto:dev@jonathansack.io?Subject=🔗JSConstraints%20-%20I%20Have%20A%20Question&Body=%5BENTER%20YOUR%20QUESTION/COMMENT%20HERE%5D%0A%0A%5BENTER%20YOUR%20SIGNATURE%20HERE%5D
+dev@jonathansack.io
 - - - -
 <br>
 
