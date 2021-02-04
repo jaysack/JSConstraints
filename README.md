@@ -87,7 +87,7 @@ We set both `width` and `height` constraints to `185`.
 <br>
 
 ### Directional Constraints
-<img src="https://jaysack-github-readme.s3.us-east-2.amazonaws.com/jsconstraints/directional-constraints-example.png" alt="Pink constraints to left and bottom in Xcode simulator" height="400">
+<img src="https://jaysack-github-readme.s3.us-east-2.amazonaws.com/jsconstraints/directional-constraints-example.png" alt="Pink constraints to left and bottom in Xcode simulator">
 
 ```swift
 // 1. Add to superview
