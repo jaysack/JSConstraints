@@ -74,7 +74,7 @@ import JSConstraints
 <br>
 
 ### Square
-<img src="https://jaysack-github-readme.s3.us-east-2.amazonaws.com/jsconstraints/square-example.png" alt="Pink square in Xcode simulator" height="400">
+<img src="https://jaysack-github-readme.s3.us-east-2.amazonaws.com/jsconstraints/square-example.png" alt="Pink square in Xcode simulator">
 
 `.square(_ value: CGFloat)` is pretty straight forward and allows you to make "squared" view. It sets both width and height to the value provided.
 ```swift
@@ -129,7 +129,7 @@ pinkSquare.setConstraints([ bottomConstraint, leadingConstraint ])
 <br>
 
 ### Reliative Constraints
-<img src="https://jaysack-github-readme.s3.us-east-2.amazonaws.com/jsconstraints/directional-constraints-example.png" alt="Pink constraints to left and bottom in Xcode simulator" height="400">
+<img src="https://jaysack-github-readme.s3.us-east-2.amazonaws.com/jsconstraints/directional-constraints-example.png" alt="Pink constraints to left and bottom in Xcode simulator">
 
 ```swift
 indigoView.setConstraints([
@@ -151,7 +151,7 @@ We also set `indigoView` to be slightly taller than our `pinkSquare`.
 <br>
 
 ### Centering a View
-<img src="https://jaysack-github-readme.s3.us-east-2.amazonaws.com/jsconstraints/centering-view-example.png" alt="Yellow circle in Xcode simulator" height="400">
+<img src="https://jaysack-github-readme.s3.us-east-2.amazonaws.com/jsconstraints/centering-view-example.png" alt="Yellow circle in Xcode simulator">
 
 ```swift
 yellowCircle.centerIn(superview: self.view)
@@ -165,7 +165,7 @@ We constrained `yellowCircle` in the **center** of the the screen.
 
 
 ### Pin to Superview
-<img src="https://jaysack-github-readme.s3.us-east-2.amazonaws.com/jsconstraints/pin-to-superview-example.png" alt="Indigo view pinned to superview in Xcode simulator" height="400">
+<img src="https://jaysack-github-readme.s3.us-east-2.amazonaws.com/jsconstraints/pin-to-superview-example.png" alt="Indigo view pinned to superview in Xcode simulator">
 
 ```swift
 indigoView.pinTo(superview: self.view, withPadding: 18)
@@ -212,7 +212,7 @@ Here, we’re deactivating our optional constraints, then, adding new constraint
 <br>
 
 ### 3. Animation
-<img src="https://jaysack-github-readme.s3.us-east-2.amazonaws.com/jsconstraints/dynamic-constraints-example.gif" alt=" Subviews animations" height="400">
+<img src="https://jaysack-github-readme.s3.us-east-2.amazonaws.com/jsconstraints/dynamic-constraints-example.gif" alt=" Subviews animations" height>
 
 - - - -
 <br>
