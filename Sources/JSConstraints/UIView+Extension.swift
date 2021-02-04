@@ -173,7 +173,7 @@ public extension UIView {
                 let constraint = self.heightAnchor.constraint(equalToConstant: constant)
                 activedConstraints.append(activated(constraint))
 
-            case .sides(let constant):
+            case .square(let constant):
                 let widthConstraint = self.widthAnchor.constraint(equalToConstant: constant)
                 let heightConstraint = self.heightAnchor.constraint(equalToConstant: constant)
                 [widthConstraint, heightConstraint].forEach { activedConstraints.append(activated($0)) }
@@ -271,7 +271,7 @@ public enum JSConstraint {
     // Absolute constraints
     case width(CGFloat)
     case height(CGFloat)
-    case sides(CGFloat)
+    case square(CGFloat)
 
     // Relative constraints
     case relWidth(NSLayoutDimension)
@@ -286,7 +286,7 @@ public enum JSConstraint {
 
     var constantRawValue: CGFloat {
         switch self {
-        case .constant(let value), .multiplier(let value), .width(let value), .height(let value), .sides(let value):
+        case .constant(let value), .multiplier(let value), .width(let value), .height(let value), .square(let value):
             return value
         default:
             return 0

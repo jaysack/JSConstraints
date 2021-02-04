@@ -1,15 +1,15 @@
 <img src="https://images.unsplash.com/photo-1520359319979-f360d010d777?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Photo by Bryson Hammer on Unsplash">
 
-# JSConstraints
+# 🔗 JSConstraints
 
 [![Version](https://img.shields.io/cocoapods/v/JSConstraints.svg?style=flat)](https://cocoapods.org/pods/JSConstraints)
 ![CI](https://github.com/jaysack/JSConstraints/workflows/status/badge.svg)
 [![Platform](https://img.shields.io/cocoapods/p/JSConstraints.svg?style=flat)](https://cocoapods.org/pods/JSConstraints)
 [![License](https://img.shields.io/cocoapods/l/JSConstraints.svg?style=flat)](https://cocoapods.org/pods/JSConstraints)
 
-> 💡 A tiny Swift library written with only one thing in mind: **Blazin' Fast Programmatic Constraints-Typing**
+> 💡 A tiny Swift library written with only one thing in mind: **Blazin' Fast Programmatic Constraints-Typing**.
 
-JSConstraints is a really small library extending `UIView` and `UIStackView` functionalities
+JSConstraints is a really small library extending `UIView` and `UIStackView` functionalities.
 - - - -
 <br>
 
@@ -23,7 +23,7 @@ JSConstraints is a really small library extending `UIView` and `UIStackView` fun
     * [Import Library](#import-library)
     * [Adding Constraints](#adding-constraints)
     * [Relative Constraints](#relative-constraints)
-    * [Sides](#sides)
+    * [Square](#square)
     * [Centering a View](#centering-a-view)
     * [Pin to Superview](#pin-to-superview)
 <br>
@@ -56,7 +56,7 @@ pod 'JSConstraints'
 <br>
 
 ### Swift Package Manager
-Using SPM instead? In Xcode project, select **File** > **Swift Package** > **Add Package Dependecy** and enter the repo URL below.
+Using SPM instead? In Xcode project, select **File** > **Swift Package** > **Add Package Dependecy** and paste the URL below.
 ```
 https://github.com/jaysack/JSConstraints
 ```
@@ -109,7 +109,7 @@ view.addSubview(pinkSquare)
 // Set constraints
 pinkSquare.setConstraints([ bottomConstraint, leadingConstraint ])
 ```
-> 💡 `constant` argument is optional and replaced by `0` if not provided
+> 💡 `constant` argument is optional and replaced by 0 if not provided.
 - - - -
 <br>
 
@@ -122,12 +122,12 @@ indigoView.relWidth(pinkSquare.widthAnchor) * .multiplier(2)
 
 #### What Just Happened?
 We set the width of `indigoView` to be twice (2 times) as big as  `pinkSquare` width.
-> 💡 `multiplier` argument is optional and replaced by `1` if not provided
+> 💡 `multiplier` argument is optional and replaced by 1 if not provided.
 - - - -
 <br>
 
-### Sides
-The `.side()` enum allows you to create square views quickly by setting both the view's width and height to the same value.
+### Square
+The `.square(_ value: CGFloat)` enum allows is a quick and easy way to create creates. It sets both width and height to the value provided.
 ```swift
 pinkSquare.setConstraints([ .sides(165) ])
 ```
@@ -192,7 +192,7 @@ dynamicConstraints.forEach { $0.isActive = false }
 // Set new constraints
 yellowCircle.centerIn(superview: self.view)
 ```
-Here, we’re deactivating our optional constraints, then, adding new constraints
+Here, we’re deactivating our optional constraints, then, adding new constraints.
 - - - -
 <br>
 
@@ -204,7 +204,7 @@ Here, we’re deactivating our optional constraints, then, adding new constraint
 
 ## ✉️ Author
 Jonathan Sack\
-email@jonathansack.io
+mailto:dev@jonathansack.io?Subject=🔗JSConstraints%20-%20I%20Have%20A%20Question&Body=%5BENTER%20YOUR%20QUESTION/COMMENT%20HERE%5D%0A%0A%5BENTER%20YOUR%20SIGNATURE%20HERE%5D
 - - - -
 <br>
 

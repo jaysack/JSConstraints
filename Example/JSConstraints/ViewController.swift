@@ -43,7 +43,7 @@ class ViewController: UIViewController {
         
         // Set square constraints (DYNAMIC CONSTRAINTS)
         dynamicConstraints = pinkSquare.setConstraints([
-            .sides(115),
+            .square(115),
             .xCenter(view.centerXAnchor) + .constant(75),
             .bottom(view.safeAreaLayoutGuide.bottomAnchor) + .constant(8)
         ])
