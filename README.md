@@ -70,12 +70,15 @@ Simply use one of the methods below to constraint any view:
 - `centerIn()`
 - `pintTo()`
 ```swift
+// Long
 foo.setConstraints([ .top(view.topAnchor) ])
+
+// Short
+foo.🔗([ .top(view.topAnchor) ])
+
 ```
 
-> Shortcut: `foo.🔗([ .top(view.topAnchor) ])`
 
-This is the 
 ### Import Library
 First, import the library
 ```swift
