@@ -64,7 +64,18 @@ https://github.com/jaysack/JSConstraints
 <br>
 
 ## 📓 How It Works?
+JSConstraints removes all unecessary boilerplate code needed when creating programmatic constraints.\
+Simply use one of the methods below to constraint any view:
+- `setConstraints()`
+- `centerIn()`
+- `pintTo()`
+```swift
+foo.setConstraints([ .top(view.topAnchor) ])
+```
 
+> Shortcut: `foo.🔗([ .top(view.topAnchor) ])`
+
+This is the 
 ### Import Library
 First, import the library
 ```swift

@@ -120,15 +120,25 @@ public extension UIView {
         ])
     }
 
+    /**
+     Shortcut method for `setConstraints(_ constraints: [JSConstraint])`
+     */
+    @discardableResult
+    func 🔗(_ constraints: [JSConstraint]) -> [NSLayoutConstraint] {
+        return setConstraints(constraints)
+    }
+
     // MARK: - Set Constraints
     /**
-         Set programmatic constraints
-         The method returns all activated constraints
-         
-         - parameter constraints: array of constraints
-         
-         - returns: An array of activated constraints
-    */
+     Set programmatic constraints
+     The method returns all activated constraints
+     
+     The shortcut for this method is `🔗(_ constraints: [JSConstraint])`
+     
+     - parameter constraints: array of constraints
+     
+     - returns: An array of activated constraints
+     */
     @discardableResult
     func setConstraints(_ constraints: [JSConstraint]) -> [NSLayoutConstraint] {
         
