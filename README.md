@@ -136,7 +136,7 @@ Let’s put it all back together, and we get:
 view.addSubview(pinkSquare)
 
 // Set constraints
-pinkSquare.setConstraints([ bottomConstraint, leadingConstraint ])
+pinkSquare.🔗([ bottomConstraint, leadingConstraint ])
 ```
 > 💡 `constant` argument is optional and replaced by 0 if not provided.
 - - - -
