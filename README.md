@@ -45,7 +45,7 @@ JSConstraints is a really small library extending `UIView` and `UIStackView` fun
 <br>
 
 ## 📥 Installation
-JSConstraints is available through [CocoaPods](https://cocoapods.org) and [Swift Package Manager](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app). 
+JSConstraints is available through [CocoaPods](https://cocoapods.org) and [Swift Package Manager](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app).
 
 ### Cocoapods
 To install via Cocoapods, simply add the following line to your Podfile:
@@ -64,11 +64,13 @@ https://github.com/jaysack/JSConstraints
 <br>
 
 ## 📓 How It Works?
-JSConstraints removes all unecessary boilerplate code needed when creating programmatic constraints.\
+JSConstraints removes all unnecessary boilerplate code needed when creating programmatic constraints.\
 Simply use one of the methods below to constraint any view:
 - `setConstraints()`
 - `centerIn()`
 - `pintTo()`
+- `🔗()` // shortcut version
+
 ```swift
 // Default
 foo.setConstraints([ .top(view.topAnchor) ])
@@ -90,9 +92,9 @@ import JSConstraints
 ### Square
 <img src="https://jaysack-github-readme.s3.us-east-2.amazonaws.com/jsconstraints/square-example.png" alt="Pink square in Xcode simulator">
 
-The `.square()` enum is pretty straight forward and allows you to make "squared" view. It sets both, width and height, to the value provided.
+The `.squared()` enum is pretty straight forward and allows you to make "squared" view. It sets both, width and height, to the value provided.
 ```swift
-pinkSquare.setConstraints([ .square(185) ])
+pinkSquare.setConstraints([ .squared(185) ])
 ```
 
 #### What Just Happened?
@@ -192,7 +194,7 @@ indigoView.pinTo(superview: self.view, withPadding: 18)
 Depending on your design, you may opt to pin your view to either your ViewController's `view` or it's `layoutGuide` as both are supported with JSConstraints.\
 Using `layoutGuide` will automatically add a child view to the layout guide's owner view:
 ```swift
-indigoView.pinTo(layoutGuide: view.safeAreaLayoutGuide) 
+indigoView.pinTo(layoutGuide: view.safeAreaLayoutGuide)
 
 // Indigo view was automatically added to `view` subviews
 ```
@@ -221,7 +223,7 @@ Here, a list of activated constraints of type `[NSLayoutConstraint]` is returned
 ### 2. Update Constraints
 ```swift
 // Deactivate optional constraints
-dynamicConstraints.forEach { $0.isActive = false }
+dynamicConstraints.deactivateAll()
 
 // Set new constraints
 [pinkSquare, indigoView].forEach { $0.centerIn(superview: view) }
