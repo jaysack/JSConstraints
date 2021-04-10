@@ -183,7 +183,7 @@ public extension UIView {
                 let constraint = self.heightAnchor.constraint(equalToConstant: constant)
                 activedConstraints.append(activated(constraint))
 
-            case .square(let constant):
+            case .squared(let constant):
                 let widthConstraint = self.widthAnchor.constraint(equalToConstant: constant)
                 let heightConstraint = self.heightAnchor.constraint(equalToConstant: constant)
                 [widthConstraint, heightConstraint].forEach { activedConstraints.append(activated($0)) }
@@ -196,9 +196,14 @@ public extension UIView {
                 let constraint = self.heightAnchor.constraint(equalTo: anchor)
                 activedConstraints.append(activated(constraint))
 
-            case .relSides(let anchor):
+            case .relSquared(let anchor):
                 let widthConstraint = self.widthAnchor.constraint(equalTo: anchor)
                 let heightConstraint = self.heightAnchor.constraint(equalTo: anchor)
+                [widthConstraint, heightConstraint].forEach { activedConstraints.append(activated($0)) }
+
+            case .ratio(let multiplier):
+                let widthConstraint = self.widthAnchor.constraint(equalTo: heightAnchor, multiplier: multiplier)
+                let heightConstraint = self.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1/multiplier)
                 [widthConstraint, heightConstraint].forEach { activedConstraints.append(activated($0)) }
 
             // Constant & Multiplier
@@ -216,7 +221,7 @@ public extension UIView {
                     let constraint = self.heightAnchor.constraint(equalTo: heightAnchor, multiplier: multiplier)
                     activedConstraints.append(activated(constraint))
                     
-                case .relSides(let anchor):
+                case .relSquared(let anchor):
                     let widthConstraint = self.widthAnchor.constraint(equalTo: anchor, multiplier: multiplier)
                     let heightConstraint = self.heightAnchor.constraint(equalTo: anchor, multiplier: multiplier)
                     [widthConstraint, heightConstraint].forEach { activedConstraints.append(activated($0)) }
@@ -281,12 +286,13 @@ public enum JSConstraint {
     // Absolute constraints
     case width(CGFloat)
     case height(CGFloat)
-    case square(CGFloat)
+    case squared(CGFloat)
 
     // Relative constraints
     case relWidth(NSLayoutDimension)
     case relHeight(NSLayoutDimension)
-    case relSides(NSLayoutDimension)
+    case relSquared(NSLayoutDimension)
+    case ratio(CGFloat)
 
     // Utilities
     case constant(CGFloat)
@@ -296,7 +302,7 @@ public enum JSConstraint {
 
     var constantRawValue: CGFloat {
         switch self {
-        case .constant(let value), .multiplier(let value), .width(let value), .height(let value), .square(let value):
+        case .constant(let value), .multiplier(let value), .width(let value), .height(let value), .squared(let value):
             return value
         default:
             return 0
