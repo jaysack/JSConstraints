@@ -37,7 +37,7 @@ public extension UIView {
          - returns: An array of activated constraints
     */
     @discardableResult
-    func pinTo(superview: UIView, withPadding padding: CGFloat = 0) -> [NSLayoutConstraint] {
+    func pinTo(superview: UIView, padding: CGFloat = 0) -> [NSLayoutConstraint] {
         return pinTo(superview: superview, xPadding: padding, yPadding: padding)
     }
 /**
@@ -72,7 +72,7 @@ public extension UIView {
          - returns: An array of activated constraints
     */
     @discardableResult
-    func pinTo(layoutGuide: UILayoutGuide, withPadding padding: CGFloat = 0) -> [NSLayoutConstraint] {
+    func pinTo(layoutGuide: UILayoutGuide, padding: CGFloat = 0) -> [NSLayoutConstraint] {
         return pinTo(layoutGuide: layoutGuide, xPadding: padding, yPadding: padding)
     }
     /**
@@ -154,17 +154,49 @@ public extension UIView {
             case .top(let topAnchor):
                 let constraint = self.topAnchor.constraint(equalTo: topAnchor)
                 activedConstraints.append(activated(constraint))
+                
+            case .topLessThanOrEqualTo(let topAnchor):
+                let constraint = self.topAnchor.constraint(lessThanOrEqualTo: topAnchor)
+                activedConstraints.append(activated(constraint))
+                
+            case .topGreaterThanOrEqualTo(let topAnchor):
+                let constraint = self.topAnchor.constraint(greaterThanOrEqualTo: topAnchor)
+                activedConstraints.append(activated(constraint))
 
             case .leading(let leadingAnchor):
                 let constraint = self.leadingAnchor.constraint(equalTo: leadingAnchor)
+                activedConstraints.append(activated(constraint))
+                
+            case .leadingLessThanOrEqualTo(let leadingAnchor):
+                let constraint = self.leadingAnchor.constraint(lessThanOrEqualTo: leadingAnchor)
+                activedConstraints.append(activated(constraint))
+                
+            case .leadingGreaterThanOrEqualTo(let leadingAnchor):
+                let constraint = self.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor)
                 activedConstraints.append(activated(constraint))
 
             case .bottom(let bottomAnchor):
                 let constraint = self.bottomAnchor.constraint(equalTo: bottomAnchor)
                 activedConstraints.append(activated(constraint))
+                
+            case .bottomLessThanOrEqualTo(let bottomAnchor):
+                let constraint = self.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor)
+                activedConstraints.append(activated(constraint))
+                
+            case .bottomGreaterThanOrEqualTo(let bottomAnchor):
+                let constraint = self.bottomAnchor.constraint(greaterThanOrEqualTo: bottomAnchor)
+                activedConstraints.append(activated(constraint))
 
             case .trailing(let trailingAnchor):
                 let constraint = self.trailingAnchor.constraint(equalTo: trailingAnchor)
+                activedConstraints.append(activated(constraint))
+                
+            case .trailingLessThanOrEqualTo(let trailingAnchor):
+                let constraint = self.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor)
+                activedConstraints.append(activated(constraint))
+                
+            case .trailingGreaterThanOrEqualTo(let trailingAnchor):
+                let constraint = self.trailingAnchor.constraint(greaterThanOrEqualTo: trailingAnchor)
                 activedConstraints.append(activated(constraint))
                 
             case .xCenter(let centerXAnchor):
@@ -178,9 +210,25 @@ public extension UIView {
             case .width(let constant):
                 let constraint = self.widthAnchor.constraint(equalToConstant: constant)
                 activedConstraints.append(activated(constraint))
+                
+            case .widthLessThanOrEqualTo(let constant):
+                let constraint = self.widthAnchor.constraint(lessThanOrEqualToConstant: constant)
+                activedConstraints.append(activated(constraint))
+                
+            case .widthGreaterThanOrEqualTo(let constant):
+                let constraint = self.widthAnchor.constraint(greaterThanOrEqualToConstant: constant)
+                activedConstraints.append(activated(constraint))
 
             case .height(let constant):
                 let constraint = self.heightAnchor.constraint(equalToConstant: constant)
+                activedConstraints.append(activated(constraint))
+                
+            case .heightLessThanOrEqualTo(let constant):
+                let constraint = self.heightAnchor.constraint(lessThanOrEqualToConstant: constant)
+                activedConstraints.append(activated(constraint))
+                
+            case .heightGreaterThanOrEqualTo(let constant):
+                let constraint = self.heightAnchor.constraint(greaterThanOrEqualToConstant: constant)
                 activedConstraints.append(activated(constraint))
 
             case .squared(let constant):
@@ -236,17 +284,49 @@ public extension UIView {
                 case .top(let topAnchor):
                     let constraint = self.topAnchor.constraint(equalTo: topAnchor, constant: constant)
                     activedConstraints.append(activated(constraint))
+                    
+                case .topLessThanOrEqualTo(let topAnchor):
+                    let constraint = self.topAnchor.constraint(lessThanOrEqualTo: topAnchor, constant: constant)
+                    activedConstraints.append(activated(constraint))
+                    
+                case .topGreaterThanOrEqualTo(let topAnchor):
+                    let constraint = self.topAnchor.constraint(greaterThanOrEqualTo: topAnchor, constant: constant)
+                    activedConstraints.append(activated(constraint))
 
                 case .leading(let leadingAnchor):
                     let constraint = self.leadingAnchor.constraint(equalTo: leadingAnchor, constant: constant)
+                    activedConstraints.append(activated(constraint))
+                    
+                case .leadingLessThanOrEqualTo(let leadingAnchor):
+                    let constraint = self.leadingAnchor.constraint(lessThanOrEqualTo: leadingAnchor, constant: constant)
+                    activedConstraints.append(activated(constraint))
+                    
+                case .leadingGreaterThanOrEqualTo(let leadingAnchor):
+                    let constraint = self.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: constant)
                     activedConstraints.append(activated(constraint))
                     
                 case .bottom(let bottomAnchor):
                     let constraint = self.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -constant)
                     activedConstraints.append(activated(constraint))
                     
+                case .bottomLessThanOrEqualTo(let bottomAnchor):
+                    let constraint = self.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor, constant: -constant)
+                    activedConstraints.append(activated(constraint))
+                    
+                case .bottomGreaterThanOrEqualTo(let bottomAnchor):
+                    let constraint = self.bottomAnchor.constraint(greaterThanOrEqualTo: bottomAnchor, constant: -constant)
+                    activedConstraints.append(activated(constraint))
+                    
                 case .trailing(let trailingAnchor):
                     let constraint = self.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -constant)
+                    activedConstraints.append(activated(constraint))
+                    
+                case .trailingLessThanOrEqualTo(let trailingAnchor):
+                    let constraint = self.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -constant)
+                    activedConstraints.append(activated(constraint))
+                    
+                case .trailingGreaterThanOrEqualTo(let trailingAnchor):
+                    let constraint = self.trailingAnchor.constraint(greaterThanOrEqualTo: trailingAnchor, constant: -constant)
                     activedConstraints.append(activated(constraint))
                     
                 case .xCenter(let centerXAnchor):
@@ -277,15 +357,27 @@ public extension UIView {
 public enum JSConstraint {
     // Directional constraints
     case top(NSLayoutAnchor<NSLayoutYAxisAnchor>)
+    case topLessThanOrEqualTo(NSLayoutAnchor<NSLayoutYAxisAnchor>)
+    case topGreaterThanOrEqualTo(NSLayoutAnchor<NSLayoutYAxisAnchor>)
     case leading(NSLayoutAnchor<NSLayoutXAxisAnchor>)
+    case leadingLessThanOrEqualTo(NSLayoutAnchor<NSLayoutXAxisAnchor>)
+    case leadingGreaterThanOrEqualTo(NSLayoutAnchor<NSLayoutXAxisAnchor>)
     case bottom(NSLayoutAnchor<NSLayoutYAxisAnchor>)
+    case bottomLessThanOrEqualTo(NSLayoutAnchor<NSLayoutYAxisAnchor>)
+    case bottomGreaterThanOrEqualTo(NSLayoutAnchor<NSLayoutYAxisAnchor>)
     case trailing(NSLayoutAnchor<NSLayoutXAxisAnchor>)
+    case trailingLessThanOrEqualTo(NSLayoutAnchor<NSLayoutXAxisAnchor>)
+    case trailingGreaterThanOrEqualTo(NSLayoutAnchor<NSLayoutXAxisAnchor>)
     case xCenter(NSLayoutAnchor<NSLayoutXAxisAnchor>)
     case yCenter(NSLayoutAnchor<NSLayoutYAxisAnchor>)
 
     // Absolute constraints
     case width(CGFloat)
+    case widthLessThanOrEqualTo(CGFloat)
+    case widthGreaterThanOrEqualTo(CGFloat)
     case height(CGFloat)
+    case heightLessThanOrEqualTo(CGFloat)
+    case heightGreaterThanOrEqualTo(CGFloat)
     case squared(CGFloat)
 
     // Relative constraints
@@ -302,7 +394,15 @@ public enum JSConstraint {
 
     var constantRawValue: CGFloat {
         switch self {
-        case .constant(let value), .multiplier(let value), .width(let value), .height(let value), .squared(let value):
+        case .constant(let value),
+             .multiplier(let value),
+             .width(let value),
+             .widthLessThanOrEqualTo(let value),
+             .widthGreaterThanOrEqualTo(let value),
+             .height(let value),
+             .heightLessThanOrEqualTo(let value),
+             .heightGreaterThanOrEqualTo(let value),
+             .squared(let value):
             return value
         default:
             return 0
