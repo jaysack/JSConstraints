@@ -120,6 +120,7 @@ public extension UIView {
         ])
     }
 
+    // MARK: - Set Constraints
     /**
      Shortcut method for `setConstraints(_ constraints: [JSConstraint])`
      */
@@ -128,7 +129,6 @@ public extension UIView {
         return setConstraints(constraints)
     }
 
-    // MARK: - Set Constraints
     /**
      Set programmatic constraints
      The method returns all activated constraints
