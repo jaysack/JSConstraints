@@ -19,18 +19,18 @@ public extension UIStackView {
     }
     
     // MARK: - Set Edge Insets
+    @available(iOS 11.0, tvOS 11.0, *)
     func setEdgeInsets(padding: CGFloat = 0) {
         setEdgeInsets(x: padding, y: padding)
     }
 
+    @available(iOS 11.0, tvOS 11.0, *)
     func setEdgeInsets(x: CGFloat = 0, y: CGFloat = 0) {
         setEdgeInsets(top: y, leading: x, bottom: y, trailing: x)
     }
 
+    @available(iOS 11.0, tvOS 11.0, *)
     func setEdgeInsets(top: CGFloat = 0, leading: CGFloat = 0, bottom: CGFloat = 0, trailing: CGFloat = 0) {
-
-        guard #available(iOS 11.0, *) else { return }
-
         self.translatesAutoresizingMaskIntoConstraints = false
         self.isLayoutMarginsRelativeArrangement = true
         self.directionalLayoutMargins = NSDirectionalEdgeInsets(top: top,

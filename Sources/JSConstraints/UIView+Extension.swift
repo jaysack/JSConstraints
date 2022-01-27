@@ -86,9 +86,9 @@ public extension UIView {
          - returns: An array of activated constraints
     */
     @discardableResult
+    @available(iOS 11.0, tvOS 11.0, *)
     func pinTo(layoutGuide: UILayoutGuide, xPadding: CGFloat = 0, yPadding: CGFloat = 0) -> [NSLayoutConstraint] {
 
-        guard #available(iOS 11.0, *) else { return [] }
         guard let superview = layoutGuide.owningView else { return [] }
         
         superview.addSubview(self)
