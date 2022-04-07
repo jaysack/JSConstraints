@@ -11,10 +11,6 @@ jobs:
 
         runs-on: macos-latest
 
-        strategy:
-          matrix:
-            destination: ['platform:iOS Simulator, OS:15.2, name:iPhone 12', 'platform:tvOS Simulator, OS:15.2, name:Apple TV 4K']
-
         steps:
         - name: Checkout
           uses: actions/checkout@v3
@@ -23,6 +19,4 @@ jobs:
           run: swift package generate-xcodeproj
 
         - name: Run Test
-          run: xcodebuild clean test -project JSConstraints.xcodeproj -destination "${destination}" -scheme 'JSConstraints-Package'
-          env:
-            destination: ${{ matrix.destination }}
+          run: xcodebuild clean test -project JSConstraints.xcodeproj -destination 'name=iPhone 12' -scheme 'JSConstraints-Package'
