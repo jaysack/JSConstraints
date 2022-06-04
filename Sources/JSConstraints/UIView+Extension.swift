@@ -61,6 +61,17 @@ public extension UIView {
         ])
     }
 
+    @discardableResult
+    func pinTo(superview: UIView, edgeInsets: UIEdgeInsets = .zero) -> [NSLayoutConstraint] {
+        superview.addSubview(self)
+        return self.setConstraints([
+            .top(superview.topAnchor) + .constant(edgeInsets.top),
+            .leading(superview.leadingAnchor) + .constant(edgeInsets.left),
+            .bottom(superview.bottomAnchor) + .constant(edgeInsets.bottom),
+            .trailing(superview.trailingAnchor) + .constant(edgeInsets.right)
+        ])
+    }
+
     // MARK: - Pin to Superview safe area layout guide
     /**
          Pin child view to superview's layout guide's edges minus padding value provided as argument.
@@ -97,6 +108,21 @@ public extension UIView {
             .leading(superview.safeAreaLayoutGuide.leadingAnchor) + .constant(xPadding),
             .bottom(superview.safeAreaLayoutGuide.bottomAnchor) + .constant(yPadding),
             .trailing(superview.safeAreaLayoutGuide.trailingAnchor) + .constant(xPadding)
+        ])
+    }
+
+    @discardableResult
+    @available(iOS 11.0, tvOS 11.0, *)
+    func pinTo(layoutGuide: UILayoutGuide, edgeInsets: UIEdgeInsets = .zero) -> [NSLayoutConstraint] {
+
+        guard let superview = layoutGuide.owningView else { return [] }
+        
+        superview.addSubview(self)
+        return self.setConstraints([
+            .top(superview.safeAreaLayoutGuide.topAnchor) + .constant(edgeInsets.top),
+            .leading(superview.safeAreaLayoutGuide.leadingAnchor) + .constant(edgeInsets.left),
+            .bottom(superview.safeAreaLayoutGuide.bottomAnchor) + .constant(edgeInsets.bottom),
+            .trailing(superview.safeAreaLayoutGuide.trailingAnchor) + .constant(edgeInsets.right)
         ])
     }
 
