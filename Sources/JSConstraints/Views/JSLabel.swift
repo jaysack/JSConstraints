@@ -20,19 +20,20 @@ public class JSLabel: UILabel {
             return self.font
         }
         set {
-            let rawFont = UIFont(name: newValue.fontName, size: newValue.pointSize)
+//            let rawFont = UIFont(name: newValue.fontName, size: newValue.pointSize)
             let fontMetrics = UIFontMetrics(forTextStyle: textStyle)
-            self.font = fontMetrics.scaledFont(for: rawFont!)
+            self.font = fontMetrics.scaledFont(for: newValue)
         }
     }
     
     // Text styl
     public var textStyle: UIFont.TextStyle = .body {
         didSet {
+            setNeedsDisplay()
 //            self.prefe
 //            let fontMetrics = UIFontMetrics(forTextStyle: textStyle)
 //            self.font = fontMetrics.scaledFont(for: self.font)
-            self.font = self.font
+//            self.font = self.font
         }
     }
 
