@@ -28,39 +28,14 @@ public extension UIView {
     
     // MARK: - Pin to Superview
     /**
-         Pin child view to superview's edges minus padding value provided as argument.
-         The method returns all activated constraints
-         
-         - parameter superview: self's parent
-         - parameter padding: horizontal and vertical padding
-         
-         - returns: An array of activated constraints
+        Pin child view to superview's edges minus padding value provided as argument.
+        The method returns all activated constraints
+     
+        - parameter superview: self's parent
+        - parameter edgeInsets: edge insets in superview
+     
+        - returns: An array of activated constraints
     */
-    @discardableResult
-    func pinTo(superview: UIView, padding: CGFloat = 0) -> [NSLayoutConstraint] {
-        return pinTo(superview: superview, xPadding: padding, yPadding: padding)
-    }
-/**
-     Pin child view to superview's edges minus padding value provided as argument.
-     The method returns all activated constraints
-     
-     - parameter superview: self's parent
-     - parameter xPadding: horizontal padding
-     - parameter yPadding: veritical padding
-     
-     - returns: An array of activated constraints
-*/
-    @discardableResult
-    func pinTo(superview: UIView, xPadding: CGFloat = 0, yPadding: CGFloat = 0) -> [NSLayoutConstraint] {
-        superview.addSubview(self)
-        return self.setConstraints([
-            .top(superview.topAnchor) + .constant(yPadding),
-            .leading(superview.leadingAnchor) + .constant(xPadding),
-            .bottom(superview.bottomAnchor) + .constant(yPadding),
-            .trailing(superview.trailingAnchor) + .constant(xPadding)
-        ])
-    }
-
     @discardableResult
     func pinTo(superview: UIView, edgeInsets: UIEdgeInsets = .zero) -> [NSLayoutConstraint] {
         superview.addSubview(self)
@@ -78,39 +53,10 @@ public extension UIView {
          The method returns all activated constraints
          
          - parameter layoutGuide: self's parent's layout guide
-         - parameter padding: horizontal and veritcal padding
+         - parameter edgeInsets: edge insets in layout guide's owning view
          
          - returns: An array of activated constraints
     */
-    @discardableResult
-    func pinTo(layoutGuide: UILayoutGuide, padding: CGFloat = 0) -> [NSLayoutConstraint] {
-        return pinTo(layoutGuide: layoutGuide, xPadding: padding, yPadding: padding)
-    }
-    /**
-         Pin child view to superview's layout guide's edges minus padding value provided as argument.
-         The method returns all activated constraints
-         
-         - parameter layoutGuide: self's parent's layout guide
-         - parameter xPadding: horizontal padding
-         - parameter yPadding: veritical padding
-         
-         - returns: An array of activated constraints
-    */
-    @discardableResult
-    @available(iOS 11.0, tvOS 11.0, *)
-    func pinTo(layoutGuide: UILayoutGuide, xPadding: CGFloat = 0, yPadding: CGFloat = 0) -> [NSLayoutConstraint] {
-
-        guard let superview = layoutGuide.owningView else { return [] }
-        
-        superview.addSubview(self)
-        return self.setConstraints([
-            .top(superview.safeAreaLayoutGuide.topAnchor) + .constant(yPadding),
-            .leading(superview.safeAreaLayoutGuide.leadingAnchor) + .constant(xPadding),
-            .bottom(superview.safeAreaLayoutGuide.bottomAnchor) + .constant(yPadding),
-            .trailing(superview.safeAreaLayoutGuide.trailingAnchor) + .constant(xPadding)
-        ])
-    }
-
     @discardableResult
     @available(iOS 11.0, tvOS 11.0, *)
     func pinTo(layoutGuide: UILayoutGuide, edgeInsets: UIEdgeInsets = .zero) -> [NSLayoutConstraint] {
