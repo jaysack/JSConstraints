@@ -46,8 +46,8 @@ public class JSButton: UIButton {
     
     // MARK: - Intrinsic Content Size
     public override var intrinsicContentSize: CGSize {
-        let width = super.intrinsicContentSize.width + edgeInsets.horizontal
-        let height = super.intrinsicContentSize.height + edgeInsets.vertical
+        let width = super.intrinsicContentSize.width + (edgeInsets.horizontal * 2)
+        let height = super.intrinsicContentSize.height + (edgeInsets.vertical * 2)
         return CGSize(width: width, height: height)
     }
 }
