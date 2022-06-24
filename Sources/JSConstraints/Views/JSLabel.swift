@@ -21,8 +21,8 @@ public class JSLabel: UILabel {
         }
         set {
 //            let rawFont = UIFont(name: newValue.fontName, size: newValue.pointSize)
-            let fontMetrics = UIFontMetrics(forTextStyle: textStyle)
-            self.font = fontMetrics.scaledFont(for: newValue)
+            let fontMetrics = UIFontMetrics(forTextStyle: .init(rawValue: newValue.fontName))
+            self.font = fontMetrics
         }
     }
     
