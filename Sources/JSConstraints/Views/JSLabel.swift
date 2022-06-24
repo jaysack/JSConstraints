@@ -12,7 +12,7 @@ public class JSLabel: UILabel {
     
     // MARK: - Proprety
     // Edge insets
-    let edgeInsets: UIEdgeInsets
+    public let edgeInsets: UIEdgeInsets
 
     // Font
     public override var font: UIFont! {
@@ -33,7 +33,7 @@ public class JSLabel: UILabel {
 
     // MARK: - Init
     // Init w/ edge insets
-    init(edgeInsets: UIEdgeInsets = .zero) {
+    public init(edgeInsets: UIEdgeInsets = .zero) {
         self.edgeInsets = edgeInsets
         super.init(frame: .zero)
         // Set edge insets
