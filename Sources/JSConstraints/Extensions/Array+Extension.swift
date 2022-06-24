@@ -6,7 +6,6 @@
 //  Copyright © Jonathan Sack. All rights reserved.
 //
 
-#if canImport(UIKit)
 import UIKit
 
 public extension Array where Element: NSLayoutConstraint {
@@ -27,4 +26,3 @@ public extension Array where Element: NSLayoutConstraint {
         self.forEach { $0.priority = UILayoutPriority(rawValue: priority) }
     }
 }
-#endif

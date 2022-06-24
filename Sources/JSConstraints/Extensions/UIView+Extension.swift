@@ -1,11 +1,11 @@
 //
 //  UIView+Extension.swift
-//  JSConstraintsSample
+//  JSConstraints
 //
-//  Created by Jonathan Sack
+//  Created by Jonathan Sack.
+//  Copyright © Jonathan Sack. All rights reserved.
 //
 
-#if canImport(UIKit)
 import UIKit
 
 // MARK: - Custom Constraint Operators
@@ -435,4 +435,3 @@ public enum JSConstraint {
         }
     }
 }
-#endif
