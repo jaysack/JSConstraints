@@ -14,37 +14,12 @@ public class JSLabel: UILabel {
     // Edge insets
     public let edgeInsets: UIEdgeInsets
 
-    // Font
-    public override var font: UIFont! {
-        get {
-            return self.font
-        }
-        set {
-//            let rawFont = UIFont(name: newValue.fontName, size: newValue.pointSize)
-            let fontMetrics = UIFontMetrics(forTextStyle: textStyle)
-            self.font = fontMetrics.scaledFont(for: newValue)
-        }
-    }
-    
-    // Text styl
-    public var textStyle: UIFont.TextStyle = .body {
-        didSet {
-            setNeedsDisplay()
-//            self.prefe
-//            let fontMetrics = UIFontMetrics(forTextStyle: textStyle)
-//            self.font = fontMetrics.scaledFont(for: self.font)
-//            self.font = self.font
-        }
-    }
-
     // MARK: - Init
     // Init w/ edge insets
     public init(edgeInsets: UIEdgeInsets = .zero) {
         self.edgeInsets = edgeInsets
         super.init(frame: .zero)
-        // Set edge insets
-        // Set dynamic font
-        self.adjustsFontForContentSizeCategory = true
+        self.textAlignment = .center
     }
     
     // Init w/ coder
