@@ -30,7 +30,7 @@ public class JSButton: UIButton {
 
     // MARK: - Init
     // Init w/ edge insets
-    init(edgeInsets: UIEdgeInsets) {
+    public init(edgeInsets: UIEdgeInsets) {
         self.edgeInsets = edgeInsets
         super.init(frame: .zero)
         

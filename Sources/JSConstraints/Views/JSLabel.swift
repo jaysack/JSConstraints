@@ -19,7 +19,6 @@ public class JSLabel: UILabel {
     public init(edgeInsets: UIEdgeInsets = .zero) {
         self.edgeInsets = edgeInsets
         super.init(frame: .zero)
-        self.textAlignment = .center
     }
     
     // Init w/ coder
