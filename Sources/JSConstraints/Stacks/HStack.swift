@@ -9,31 +9,61 @@
 #if canImport(UIKit)
 import UIKit
 
-public class HStack: UIStackView {
+public class HStack: UIStackView, ProxyStackProtocol {
 
-    // Init w/ properties
-    public convenience init(
-        spacing: CGFloat = 0,
+    // MARK: Init
+    // Init programmatically
+    public init(
+        spacing: CGFloat = 16,
         alignment: UIStackView.Alignment = .fill,
         distribution: UIStackView.Distribution = .fill
     ) {
-        self.init()
-        self.axis = .horizontal
-        self.spacing = spacing
-        self.alignment = alignment
-        self.distribution = distribution
+        self.proxyAxis = .horizontal
+        self.proxySpacing = spacing
+        self.proxyAlignment = alignment
+        self.proxyDistribution = distribution
+        super.init(frame: .zero)
     }
     
-    // Init w/ subviews
-    public convenience init(
-        arrangedSubviews: [UIView],
-        spacing: CGFloat = 0
-    ) {
-        self.init(arrangedSubviews: arrangedSubviews)
-        self.axis = .horizontal
-        self.spacing = spacing
-        self.alignment = .fill
-        self.distribution = .fill
+    // Init w/ coder
+    public required init(coder: NSCoder) {
+        self.proxyAxis = .horizontal
+        self.proxySpacing = 16
+        self.proxyAlignment = .fill
+        self.proxyDistribution = .fill
+        super.init(coder: coder)
+    }
+    
+    // MARK: Properties
+    var proxyAxis: NSLayoutConstraint.Axis
+    public override var axis: NSLayoutConstraint.Axis {
+        didSet {
+            proxyAxis = axis
+        }
+    }
+    var proxySpacing: CGFloat
+    public override var spacing: CGFloat {
+        didSet {
+            proxySpacing = spacing
+        }
+    }
+    var proxyAlignment: UIStackView.Alignment
+    public override var alignment: UIStackView.Alignment {
+        didSet {
+            proxyAlignment = alignment
+        }
+    }
+    var proxyDistribution: UIStackView.Distribution
+    public override var distribution: UIStackView.Distribution {
+        didSet {
+            proxyDistribution = distribution
+        }
+    }
+
+    // MARK: Overrides
+    public override func addArrangedSubview(_ view: UIView) {
+        super.addArrangedSubview(view)
+        setLayout()
     }
 }
 #endif
