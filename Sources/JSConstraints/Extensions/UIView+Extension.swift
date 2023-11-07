@@ -37,14 +37,14 @@ public extension UIView {
         - returns: An array of activated constraints
     */
     @discardableResult
-    func pinTo(superview: UIView, edgeInsets: UIEdgeInsets = .zero) -> [NSLayoutConstraint] {
+    func pinTo(superview: UIView, edgeInsets: UIEdgeInsets = .zero, activate: Bool = true) -> [NSLayoutConstraint] {
         superview.addSubview(self)
         return self.setConstraints([
             .top(superview.topAnchor) + .constant(edgeInsets.top),
             .leading(superview.leadingAnchor) + .constant(edgeInsets.left),
             .bottom(superview.bottomAnchor) + .constant(edgeInsets.bottom),
             .trailing(superview.trailingAnchor) + .constant(edgeInsets.right)
-        ])
+        ], activate: activate)
     }
 
     // MARK: - Pin to Superview safe area layout guide
@@ -59,7 +59,7 @@ public extension UIView {
     */
     @discardableResult
     @available(iOS 11.0, tvOS 11.0, *)
-    func pinTo(layoutGuide: UILayoutGuide, edgeInsets: UIEdgeInsets = .zero) -> [NSLayoutConstraint] {
+    func pinTo(layoutGuide: UILayoutGuide, edgeInsets: UIEdgeInsets = .zero, activate: Bool = true) -> [NSLayoutConstraint] {
 
         guard let superview = layoutGuide.owningView else { return [] }
         
@@ -69,7 +69,7 @@ public extension UIView {
             .leading(superview.safeAreaLayoutGuide.leadingAnchor) + .constant(edgeInsets.left),
             .bottom(superview.safeAreaLayoutGuide.bottomAnchor) + .constant(edgeInsets.bottom),
             .trailing(superview.safeAreaLayoutGuide.trailingAnchor) + .constant(edgeInsets.right)
-        ])
+        ], activate: activate)
     }
 
     // MARK: - Center in Superview
@@ -84,12 +84,12 @@ public extension UIView {
          - returns: An array of related activated constraints (horizontal and vertical center constraints)
     */
     @discardableResult
-    func centerIn(superview: UIView, xOffset: CGFloat = 0, yOffset: CGFloat = 0) -> [NSLayoutConstraint] {
+    func centerIn(superview: UIView, xOffset: CGFloat = 0, yOffset: CGFloat = 0, activate: Bool = true) -> [NSLayoutConstraint] {
         superview.addSubview(self)
         return self.setConstraints([
             .xCenter(superview.centerXAnchor) + .constant(xOffset),
             .yCenter(superview.centerYAnchor) + .constant(yOffset)
-        ])
+        ], activate: activate)
     }
 
     // MARK: - Set Constraints
@@ -97,8 +97,8 @@ public extension UIView {
      Shortcut method for `setConstraints(_ constraints: [JSConstraint])`
      */
     @discardableResult
-    func 🔗(_ constraints: [JSConstraint]) -> [NSLayoutConstraint] {
-        return setConstraints(constraints)
+    func 🔗(_ constraints: [JSConstraint], activate: Bool = true) -> [NSLayoutConstraint] {
+        return setConstraints(constraints, activate: activate)
     }
 
     /**
@@ -112,7 +112,7 @@ public extension UIView {
      - returns: An array of activated constraints
      */
     @discardableResult
-    func setConstraints(_ constraints: [JSConstraint]) -> [NSLayoutConstraint] {
+    func setConstraints(_ constraints: [JSConstraint], activate: Bool = true) -> [NSLayoutConstraint] {
         
         // Enable Auto Layout
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -316,7 +316,9 @@ public extension UIView {
         }
         
         // Activate constraints
-        NSLayoutConstraint.activate(activedConstraints)
+        if activate {
+            NSLayoutConstraint.activate(activedConstraints)
+        }
 
         // Return constraints
         return activedConstraints
