@@ -65,10 +65,10 @@ public extension UIView {
         
         superview.addSubview(self)
         return self.setConstraints([
-            .top(superview.safeAreaLayoutGuide.topAnchor) + .constant(edgeInsets.top),
-            .leading(superview.safeAreaLayoutGuide.leadingAnchor) + .constant(edgeInsets.left),
-            .bottom(superview.safeAreaLayoutGuide.bottomAnchor) + .constant(edgeInsets.bottom),
-            .trailing(superview.safeAreaLayoutGuide.trailingAnchor) + .constant(edgeInsets.right)
+            .top(layoutGuide.topAnchor) + .constant(edgeInsets.top),
+            .leading(layoutGuide.leadingAnchor) + .constant(edgeInsets.left),
+            .bottom(layoutGuide.bottomAnchor) + .constant(edgeInsets.bottom),
+            .trailing(layoutGuide.trailingAnchor) + .constant(edgeInsets.right)
         ], activate: activate)
     }
 
